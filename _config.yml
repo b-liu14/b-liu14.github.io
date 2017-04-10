@@ -1,27 +1,26 @@
 # Site configuration
-domain: "http://songroger.win"
-baseurl: "" # the subpath of your site, e.g. /blog/
-url: "http://songroger.github.io/" # the base hostname & protocol for your site
+domain: "https://b-liu14.github.io"
+baseurl: "/blog" # the subpath of your site, e.g. /blog/
+url: "https://b-liu14.github.io" # the base hostname & protocol for your site
 permalink: /:title/
-avatar: http://7xof48.com1.z0.glb.clouddn.com/avatar.jpg
-about: http://7xof48.com1.z0.glb.clouddn.com/about.jpg
+avatar: /blog/static/avatar.JPG
+about: /blog/static/about.JPG
 favicon: http://7xof48.com1.z0.glb.clouddn.com/favicon.png
-basecss: 
+basecss:
 # Theme specific configuration
-title: songroger
+title: kevin
 description: >
-  Hi there, My name is Luozhan.Song, usually I use "songroger" as my ID everywhere.
-  I was born and raised in Hunan China. 
-  I'm really fond of beautiful design, drawing etc.
+  Hi there, My name is kevin.
+  I was born and raised in GuiZhou China.
 
 # Contact and social media links
 twitter_username: songrogero
-github_username: songroger
+github_username: b-liu14
 facebook_username: song.roger.1
 instagram_username: songroger198
 linkedin_username: songroger
 
-exclude: ['node_modules', 'gulpfile.js', 'package.json']
+exclude: ['node_modules', 'gulpfile.js', 'package.json', 'scripts']
 
 kramdown:
   input: GFM
