@@ -1,7 +1,4 @@
-# [murmur](http://songroger.github.io/murmur)
+# [kevin's blog](http://b-liu14.github.io)
 
-![preview](preview.png)
-
-This is another simple theme for [jekyll](http://jekyllrb.com/).
-Try to edit `_config.yml` first before use it.
-Replace all the blabla configurations(like "avatar", "about", "title", etc.) to your owns.
+This is kevin's blog supported by [jekyll](http://jekyllrb.com/).
+Thanks for [songroger](https://songroger.github.io/murmur/) to provide this marvellous theme.
