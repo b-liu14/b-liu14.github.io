@@ -9,7 +9,7 @@ Hi there, I'm kevin, a junior student in [School of Software](http://www.thss.ts
 
 Here is my [CV]({{ site.baseurl }}{{ site.CV-en }}) and here is my [简历(中文)]({{ site.baseurl }}{{ site.CV-zh }})
 
-Here are some echnical [blogs in cnblog](http://www.cnblogs.com/bill-liu/).
+Here are some technical [blogs in cnblog](http://www.cnblogs.com/bill-liu/).
 
 
 ### Projects

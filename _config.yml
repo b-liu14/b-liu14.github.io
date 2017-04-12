@@ -14,11 +14,11 @@ basecss:
 title: kevin
 
 # Contact and social media links
-twitter_username: songrogero
+# twitter_username: songrogero
 github_username: b-liu14
-facebook_username: song.roger.1
-instagram_username: songroger198
-linkedin_username: songroger
+# facebook_username: song.roger.1
+# instagram_username: songroger198
+# linkedin_username: songroger
 
 exclude: ['node_modules', 'gulpfile.js', 'package.json', 'scripts']
 
@@ -33,3 +33,5 @@ gems: ['jekyll-paginate']
 # Pagination
 paginate: 5
 paginate_path: /archive/page:num
+
+excerpt_separator: "\n\n\n"
