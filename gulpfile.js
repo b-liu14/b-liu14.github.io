@@ -62,7 +62,7 @@ gulp.task('styles', () => {
 
 // Watch sass and all html posts
 gulp.task('watch', () => {
-  gulp.watch('_src/css/**/*.css', ['styles', 'reload']);
+  gulp.watch('_config.yml', '_src/css/**/*.css', ['styles', 'reload']);
   gulp.watch(['index.html', '_layouts/*.html', '_includes/*.html', '_posts/*', '_drafts/*', '*.md'], ['reload']);
 });
 
