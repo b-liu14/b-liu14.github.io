@@ -29,7 +29,7 @@ kramdown:
 # before deploy your webpage
 enable_comment: true
 
-gems: ['jekyll-paginate']
+gems: ['jekyll-paginate', 'jekyll/tagging']
 # Pagination
 paginate: 5
 paginate_path: /archive/page:num
@@ -37,9 +37,7 @@ paginate_path: /archive/page:num
 excerpt_separator: "\n\n\n"
 
 # Tag related settings.
-gems:
-- jekyll/tagging
-tag_page_layout: tag
-tag_page_dir: blog/tags
+tag_page_layout: tag_page
+tag_page_dir: tag
 tag_feed_layout: tag_feed
 tag_feed_dir: tag

@@ -5,13 +5,11 @@ layout: default
 <article class="article">
   <h2 class="article__title article__title--single">{{ page.title }}</h2>
   <time class="article__date" datetime="{{ page.date | date: "%Y-%m-%d" }}">{% if page.author %}By {{ page.author}} on {% endif %}{{ page.date | date: " %H:%M %b.%d-%Y" }}</time>
-  <ul>
-	{% for tag in page.tags %}
-	<li>
- 	  <a href="/{{ site.tag_page_dir }}/{{ tag | slugify: 'pretty' }}/">{{ tag }}</a>
-	</li>
-	{% endfor %}
-  </ul>
+  <span class="post-tags">
+      {% for tag in page.tags %}
+    	<a href="/{{ site.tag_page_dir }}/{{ tag }}/">{{ tag }}</a>,
+      {% endfor %}
+  </span>
   {% if page.cover %}
     <div class="cover">
       <img src="{{ page.cover }}">
