@@ -30,6 +30,21 @@ kramdown:
 enable_comment: true
 
 gems: ['jekyll-paginate', 'jekyll/tagging']
+gems:
+  - jekyll-archives
+jekyll-archives:
+    enabled:
+      - year
+      - month
+      - tags
+    layouts:
+      year: year-archive
+      month: month-archive
+      tag: tag-archive
+    permalinks:
+      year: '/archives/year/:year/'
+      month: '/archives/month/:year-:month/'
+      tag: '/archives/tag/:name/'
 # Pagination
 paginate: 5
 paginate_path: /archive/page:num
