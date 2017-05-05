@@ -1,11 +1,7 @@
 ---
-layout: post
 title: "微软2017年预科生计划在线编程笔试第二场总结"
 date: 2017-04-09 15:32:43 +0800
-categories: diary
-location: Beijing China
-description: 暂无描述
-tags: feminism anti-capitalism f**k
+tags: algorithm C++ 
 ---
 ---
 

@@ -29,9 +29,7 @@ kramdown:
 # before deploy your webpage
 enable_comment: true
 
-gems: ['jekyll-paginate', 'jekyll/tagging']
-gems:
-  - jekyll-archives
+gems: ['jekyll-paginate', 'jekyll-archives']
 jekyll-archives:
     enabled:
       - year
@@ -53,3 +51,13 @@ excerpt_separator: "\n\n\n"
 
 # Tag related settings.
 tag_page_dir: archives/tag
+
+defaults:
+  -
+    scope:
+      path: "_posts" # an empty string here means all files in the project
+    values:
+      layout: post
+      categories: technology_blog
+      location: Beijing China
+      description: 无描述
