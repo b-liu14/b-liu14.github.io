@@ -1,7 +1,6 @@
 node_modules
 *.DS_Store
 preview.png
-_site
 tmp
 Gemfile.lock
 *.swp

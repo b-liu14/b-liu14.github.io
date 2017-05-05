@@ -1,0 +1,861 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="songroger">
+
+  <title>微软2017年预科生计划在线编程笔试第二场总结</title>
+
+  <meta name="description" content="&lt;hr /&gt;&lt;p&gt;昨天参加了微软实习招聘的笔试，感受颇深。&lt;/p&gt;&lt;p&gt;首先，感觉微软对于算法的要求确实比较高。总共四道题算法题，每一道题都需要比较巧妙的思想。而我当时一道题都没有完全做出来（惭愧）。&lt;/p&gt;&lt;p&gt;下面简要记录一下我对于这四道...">
+
+  <!-- Open graph data -->
+  <meta property="og:site_name" content="kevin's blog">
+  <meta property="og:title" content="微软2017年预科生计划在线编程笔试第二场总结">
+  <meta property="og:url" content="http://localhost:4000/%E5%BE%AE%E8%BD%AF2017%E5%B9%B4%E9%A2%84%E7%A7%91%E7%94%9F%E8%AE%A1%E5%88%92%E5%9C%A8%E7%BA%BF%E7%BC%96%E7%A8%8B%E7%AC%94%E8%AF%95%E7%AC%AC%E4%BA%8C%E5%9C%BA%E6%80%BB%E7%BB%93/">
+  <meta property="og:type" content="article">
+  <meta property="og:description" content="&lt;hr /&gt;&lt;p&gt;昨天参加了微软实习招聘的笔试，感受颇深。&lt;/p&gt;&lt;p&gt;首先，感觉微软对于算法的要求确实比较高。总共四道题算法题，每一道题都需要比较巧妙的思想。而我当时一道题都没有完全做出来（惭愧）。&lt;/p&gt;&lt;p&gt;下面简要记录一下我对于这四道...">
+
+  <!-- Standard Stuff -->
+  <link rel="canonical" href="http://localhost:4000/%E5%BE%AE%E8%BD%AF2017%E5%B9%B4%E9%A2%84%E7%A7%91%E7%94%9F%E8%AE%A1%E5%88%92%E5%9C%A8%E7%BA%BF%E7%BC%96%E7%A8%8B%E7%AC%94%E8%AF%95%E7%AC%AC%E4%BA%8C%E5%9C%BA%E6%80%BB%E7%BB%93/"/>
+  <link rel="alternate" type="application/rss+xml" title="kevin's blog" href="http://localhost:4000/feed.xml"/>
+
+  <!-- Favicons -->
+  <link rel="shortcut icon" href="http://7xof48.com1.z0.glb.clouddn.com/favicon.png">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-config" content="/assets/browserconfig.xml">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Styles -->
+
+  
+    <style type="text/css">
+      ::selection{background:#1565c0;color:#fff;text-shadow:none}html{font-size:109.375%;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-smoothing:antialiased;text-size-adjust:100%;box-sizing:border-box}@media screen and (min-width:700px){html{font-size:125%}}@media screen and (min-width:1440px){html{font-size:140.625%}}*,:after,:before{margin:0;padding:0;box-sizing:inherit}body{color:#444;font-family:Georgia,Source Sans Pro,sans-serif;font-size:.9rem;line-height:1.5rem}img{display:block;max-width:100%;height:auto;border:0}a:active,a:hover,a:visited{text-decoration:none}strong{font-weight:700}em{font-style:italic}a{background:transparent;color:#1565c0;text-decoration:none;cursor:pointer;word-wrap:break-word}a:active,a:focus,a:hover{outline:0;text-decoration:none}h1,h2,h3,h4,h5,h6,p{margin-bottom:.2rem}h1,h2,h3,h4,h5,h6{color:#000;font-weight:700;vertical-align:middle}h1:not(:first-child),h2:not(:first-child),h3:not(:first-child),h4:not(:first-child),h5:not(:first-child),h6:not(:first-child){margin-top:2.4rem}h1{font-size:2rem;line-height:3.2rem}h2{font-size:1.5rem;line-height:2.4rem}h3{font-size:1.17rem}h4{font-size:1rem}h5{font-size:.707rem}h6{font-size:.5rem}ol,ul{margin:0 0 1.6rem 1.6rem}ol ol,ol ul,ul ol,ul ul{margin:0 1.6rem}hr{display:block;height:1.6rem;border:0;box-shadow:inset 0 1px 0 #eee}blockquote{margin-bottom:1.6rem;padding:1.6rem;border-left:4px solid #e6e6e6;background:#f7f7f7}blockquote p{margin:0}.col{max-width:calc(700px + 1.6rem);margin:0 auto;padding:0 .8rem}@media screen and (min-width:1440px){.col{max-width:calc(800px + 1.6rem)}}.header{display:flex;flex-wrap:wrap;justify-content:space-around;margin-bottom:2rem;box-shadow:0 1px 0 0 #eee}@media screen and (min-width:734px){.header{font-size:.75rem}}.header__logo{margin-bottom:0;font-size:1rem;font-weight:400;line-height:1.6rem}.header__logo img{display:initial;width:30px;height:30px;vertical-align:middle;border-radius:15px;opacity:1}.header__logo img:hover{opacity:.5;transition:all .5s ease-in}.header__logo a{color:#999;text-transform:uppercase}@media screen and (min-width:734px){.header__logo{font-size:.75rem}}.header__nav{display:flex;flex-wrap:wrap}.header__nav a{color:#444}.header__nav a:hover{color:#999;transition:all .5s ease-in}.header__link{padding:.8rem;color:#444;text-decoration:none;border-bottom:2px solid transparent;padding-bottom:1px}.header__link:hover{transition:all .5s ease-in;border-color:hsla(34,5%,70%,.7)}.header__link--logo{padding:.8rem;display:block}.header__link--logo:focus,.header__link--logo:hover{color:#444;transition:all .5s ease-in}.footer{margin-top:.5rem;padding:1.6rem 0;box-shadow:inset 0 1px 0 #eee}.footer .col{font-size:13px;text-align:center}.subscribe{color:#999;transition:all .25s ease-in}.subscribe:hover{color:#444;text-decoration:none}.blocks{display:flex;align-items:center;margin-bottom:.1rem}.blocks--space{justify-content:space-between}.block__item--mr{margin-right:.8rem}.blocks__item a{text-decoration:none;color:#999;border:3px solid rgba(0,0,0,.1);border-radius:20px;padding:1px 15px;font-family:Georgia,Microsoft YaHei,sans-serif}.blocks__item a:hover{color:#444;border-color:#999;transition:all .5s ease-in}.blocks__item .btn{box-shadow:inset 0 0 0 0 #1565c0}.article{margin-bottom:3rem;animation:itemshow .9s linear}.article__title{margin-bottom:.8rem}.article__title--single,.article__title a{font-family:Georgia,Microsoft YaHei,sans-serif}.article__title a{color:#444;transition:all .25s ease-in}.article__title a:hover{color:#999;text-decoration:none}.article__date{display:block;margin-bottom:.8rem;font-size:.7501rem}.cover{margin-bottom:.5rem}.cover img{width:100%}.article__more{color:#999;text-decoration:none}.article__more:hover{transition:all .5s ease-in;color:#444;text-decoration:none}.post-tags{text-align:right;text-decoration:none;font:italic 700 12px/30px Georgia,serif}.post-tags a{color:#999}.post-tags a:hover{color:#444;text-decoration:none}@-webkit-keyframes "itemshow"{0%{top:-60px;opacity:0}33%{top:-40px;opacity:.2}66%{top:-20px;opacity:.6}to{top:0;opacity:1}}@keyframes "itemshow"{0%{top:-60px;opacity:0}33%{top:-40px;opacity:.2}66%{top:-20px;opacity:.6}to{top:0;opacity:1}}.arch-item{margin-bottom:10px;animation:itemshow .9s linear}.arch-title{color:#444;font-size:20px;font-family:Georgia,Hiragino Sans GB,Microsoft YaHei,sans-serif;font-weight:700;padding-right:10px}.arch-title:hover{color:#999;transition:all .25s ease-in}time{font-size:15px;font-family:Optima,Helvetica Neue,sans-serif}.arch-desc,time{color:#999}code,pre{background:#f7f7f7;font-family:Source Code Pro,monospace;font-size:.7rem;overflow-x:auto;vertical-align:top;line-height:1rem}.highlight{margin-bottom:1.6rem;padding:.8rem;background:#f7f7f7;box-shadow:inset 0 0 0 1px #eee}.highlight .c{color:#998}.highlight .err{background-color:#e3d2d2;color:#a61717}.highlight .k,.highlight .o{font-weight:400}.highlight .cm{color:#998}.highlight .cp{color:#999;font-weight:400}.highlight .c1{color:#998}.highlight .cs{color:#999;font-weight:400}.highlight .gd{background-color:#fdd;color:#000}.highlight .gd .x{background-color:#faa;color:#000}.highlight .gr{color:#a00}.highlight .gh{color:#999}.highlight .gi{background-color:#dfd;color:#000}.highlight .gi .x{background-color:#afa;color:#000}.highlight .go{color:#888}.highlight .gp{color:#555}.highlight .gs{font-weight:400}.highlight .gu{color:#aaa}.highlight .gt{color:#a00}.highlight .kc,.highlight .kd,.highlight .kp,.highlight .kr,.highlight .kt{font-weight:400}.highlight .kt{color:#458}.highlight .m{color:#099}.highlight .s{color:#d14}.highlight .na{color:teal}.highlight .nb{color:#0086b3}.highlight .nc{color:#458;font-weight:400}.highlight .no{color:teal}.highlight .ni{color:purple}.highlight .ne,.highlight .nf{color:#900;font-weight:400}.highlight .nn{color:#555}.highlight .nt{color:navy}.highlight .nv{color:teal}.highlight .ow{font-weight:400}.highlight .w{color:#bbb}.highlight .mf,.highlight .mh,.highlight .mi,.highlight .mo{color:#099}.highlight .s2,.highlight .sb,.highlight .sc,.highlight .sd,.highlight .se,.highlight .sh,.highlight .si,.highlight .sx{color:#d14}.highlight .sr{color:#009926}.highlight .s1{color:#d14}.highlight .ss{color:#990073}.highlight .bp{color:#999}.highlight .vc,.highlight .vg,.highlight .vi{color:teal}.highlight .il{color:#099}
+    </style>
+  
+
+    <!-- mathjax -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$']]}});
+      processEscapes: true
+    </script>
+    <script type="text/javascript" async
+      src="https://cdn.mathjax.org/mathjax/2.7-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+
+</head>
+
+<body>
+
+  <header class="header">
+
+    
+      <div class="header__logo">
+        <a href="/" class="header__link--logo">
+        <!-- <div class="spinner"></div> -->
+        <img src="/static/avatar.JPG"></a>
+      </div>
+    
+
+    <nav class="header__nav" role="navigation">
+      <a href="/archives/tag" class="header__link">Tags</a>
+      <a href="/archives/year" class="header__link">Years</a>
+      <a href="/archives/month" class="header__link">Months</a>
+      <a href="/archives/" class="header__link">Archive</a>
+      <!-- <a href="http://twitter.com/" class="header__link" target="_blank">Twitter</a> -->
+      <a href="http://github.com/b-liu14" class="header__link" target="_blank">Github</a>
+      <!-- <a href="http://facebook.com/" class="header__link" target="_blank">Facebook</a> -->
+      <a href="/about/" class="header__link">About</a>
+    </nav>
+  </header>
+
+  <main class="col">
+
+
+<article class="article">
+  <h2 class="article__title article__title--single">微软2017年预科生计划在线编程笔试第二场总结</h2>
+  <time class="article__date" datetime="2017-04-09"> 15:32 Apr.09-2017</time>
+  
+  <hr />
+
+<p>昨天参加了微软实习招聘的笔试，感受颇深。</p>
+
+<p>首先，感觉微软对于算法的要求确实比较高。总共四道题算法题，每一道题都需要比较巧妙的思想。而我当时一道题都没有完全做出来（惭愧）。</p>
+
+<p>下面简要记录一下我对于这四道题的想法。</p>
+
+<h2 id="题目1queen-attack">题目1：<a href="https://hihocoder.com/problemset/problem/1497">Queen Attack</a></h2>
+
+<p>时间限制:10000ms</p>
+
+<p>单点时限:1000ms</p>
+
+<p>内存限制:256MB</p>
+
+<h3 id="描述">描述</h3>
+
+<p>There are N queens in an infinite chessboard. We say two queens may attack each other if they are in the same vertical line, horizontal line or diagonal line even if there are other queens sitting between them.</p>
+
+<p>Now given the positions of the queens, find out how many pairs may attack each other?</p>
+
+<h3 id="输入">输入</h3>
+
+<p>The first line contains an integer N.</p>
+
+<p>Then N lines follow. Each line contains 2 integers Ri and Ci indicating there is a queen in the Ri-th row and Ci-th column.</p>
+
+<p>No two queens share the same position.</p>
+
+<p>For 80% of the data, 1 &lt;= N &lt;= 1000</p>
+
+<p>For 100% of the data, 1 &lt;= N &lt;= 100000, 0 &lt;= Ri, Ci &lt;= 1000000000</p>
+
+<h3 id="输出">输出</h3>
+
+<p>One integer, the number of pairs may attack each other.</p>
+
+<h4 id="样例输入">样例输入</h4>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>5  
+1 1  
+2 2  
+3 3   
+1 3
+3 1
+</code></pre>
+</div>
+
+<h4 id="样例输出">样例输出</h4>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>10
+</code></pre>
+</div>
+<h3 id="思路">思路</h3>
+
+<h4 id="思路1brute-forceon2-80">思路1：brute force[$O(n^2)$ 80%]</h4>
+
+<p>由于这次比赛是可以得部分分的，因此我在面对这道题的时候为了节省时间直接采用了最暴力的方法，枚举每一对皇后，检查是否能相互攻击，时间复杂度为O($N^2$)，最终通过了80%的测试用例。代码如下：</p>
+
+<div class="language-c++ highlighter-rouge"><pre class="highlight"><code><span class="cp">#include &lt;vector&gt;
+#include &lt;iostream&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">point</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">;</span>
+    <span class="n">point</span><span class="p">(</span><span class="kt">int</span> <span class="n">_x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">_y</span><span class="p">)</span> <span class="o">:</span> <span class="n">x</span><span class="p">(</span><span class="n">_x</span><span class="p">),</span> <span class="n">y</span><span class="p">(</span><span class="n">_y</span><span class="p">)</span> <span class="p">{};</span>
+<span class="p">};</span>
+
+<span class="kt">bool</span> <span class="nf">canAttack</span><span class="p">(</span><span class="n">point</span> <span class="n">A</span><span class="p">,</span> <span class="n">point</span> <span class="n">B</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">A</span><span class="p">.</span><span class="n">x</span> <span class="o">==</span> <span class="n">B</span><span class="p">.</span><span class="n">x</span> <span class="o">||</span> <span class="n">A</span><span class="p">.</span><span class="n">y</span> <span class="o">==</span> <span class="n">B</span><span class="p">.</span><span class="n">y</span> <span class="o">||</span> <span class="n">A</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">A</span><span class="p">.</span><span class="n">y</span> <span class="o">==</span> <span class="n">B</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">B</span><span class="p">.</span><span class="n">y</span> <span class="o">||</span> <span class="n">A</span><span class="p">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">A</span><span class="p">.</span><span class="n">y</span> <span class="o">==</span> <span class="n">B</span><span class="p">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">B</span><span class="p">.</span><span class="n">y</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">N</span><span class="p">;</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">N</span><span class="p">;</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="n">point</span><span class="o">&gt;</span> <span class="n">v</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">;</span>
+        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">x</span> <span class="o">&gt;&gt;</span> <span class="n">y</span><span class="p">;</span>
+        <span class="n">v</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">point</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">));</span>
+    <span class="p">}</span>
+    <span class="kt">int</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">j</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">canAttack</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">v</span><span class="p">[</span><span class="n">j</span><span class="p">]))</span> <span class="p">{</span>
+                <span class="n">ans</span> <span class="o">++</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ans</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h4 id="思路2排序onlgn-ac">思路2：排序[O(nlgn), AC]</h4>
+
+<p>​	思路1慢就慢在需要枚举每一对皇后，但是实际上我们可以把攻击条件分为四种：位于相同的行，位于相同的列，坐标和相等，坐标差相等。拆分以后我们可以知道如下性质：</p>
+
+<ul>
+  <li>
+    <p>在某个攻击条件下，如果A，B能相互攻击，B，C不能相互攻击，则A，C不能相互攻击。这是显然的，如对于行攻击，如果A，B位于同一行，B，C位于不用行，则A，C位于不同行。</p>
+  </li>
+  <li>
+    <p>若A，B在某个攻击条件下能相互攻击，则在别的攻击条件下一定不能相互攻击。这是因为若A，B能在不少于两个攻击条件下相互攻击，则可知A，B位于相同的位置，而题目中强调了这种情况不可能出现。</p>
+
+    <p>由以上两条性质，我们就可以得到如下思路：</p>
+
+    <blockquote>
+      <p>对于每一个攻击条件，将所有皇后所形成的集合划分为$S={s_i}$，集合$s_i​$内的皇后都能互相攻击，不同集合间的皇后不能互相攻击（由性质1保证总能实现这样的划分），则在该攻击条件下，能相互攻击的皇后个数为$\sum_{i} C_{|s_i|}^2$，最终将四种攻击条件所得到的结果相加即为最终结果（性质2）。</p>
+    </blockquote>
+
+    <p>具体实现方式（以行攻击为例，其余攻击方式同理）</p>
+
+    <p>将所有皇后按照行排序，然后遍历所有皇后，统计每行有多少个皇后（设为$n_i$），位于该行的皇后能相互攻击，位于不同行的皇后在行攻击的条件下不能相互攻击，因此可以进行行攻击的皇后对数为$\sum_{i}C_{n_i}^2$。</p>
+
+    <p>该思路的时间复杂度为$O(n\ lgn)$，AC，代码如下（稍微写的有点啰嗦，虽然可以通过函数指针的方式来压缩代码，但是这将大大影响代码可读性，故放弃）：</p>
+
+    <div class="language-c++ highlighter-rouge"><pre class="highlight"><code><span class="c1">// 省略include
+</span>
+<span class="k">class</span> <span class="nc">point</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sum</span><span class="p">,</span> <span class="n">diff</span><span class="p">;</span>
+    <span class="n">point</span><span class="p">(</span><span class="kt">int</span> <span class="n">_x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">_y</span><span class="p">)</span> <span class="o">:</span> <span class="n">x</span><span class="p">(</span><span class="n">_x</span><span class="p">),</span> <span class="n">y</span><span class="p">(</span><span class="n">_y</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">sum</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">;</span>
+        <span class="n">diff</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="n">y</span><span class="p">;</span>
+    <span class="p">};</span>
+<span class="p">};</span>
+
+<span class="k">struct</span> <span class="p">{</span>
+    <span class="kt">bool</span> <span class="k">operator</span><span class="p">()</span> <span class="p">(</span><span class="k">const</span> <span class="n">point</span><span class="o">&amp;</span> <span class="n">p1</span><span class="p">,</span> <span class="k">const</span> <span class="n">point</span><span class="o">&amp;</span> <span class="n">p2</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">p1</span><span class="p">.</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">p2</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>  <span class="n">xCmp</span><span class="p">;</span>
+
+<span class="k">struct</span> <span class="p">{</span>
+    <span class="kt">bool</span> <span class="k">operator</span><span class="p">()</span> <span class="p">(</span><span class="k">const</span> <span class="n">point</span><span class="o">&amp;</span> <span class="n">p1</span><span class="p">,</span> <span class="k">const</span> <span class="n">point</span><span class="o">&amp;</span> <span class="n">p2</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">p1</span><span class="p">.</span><span class="n">y</span> <span class="o">&lt;</span> <span class="n">p2</span><span class="p">.</span><span class="n">y</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>  <span class="n">yCmp</span><span class="p">;</span>
+
+<span class="k">struct</span> <span class="p">{</span>
+    <span class="kt">bool</span> <span class="k">operator</span><span class="p">()</span> <span class="p">(</span><span class="k">const</span> <span class="n">point</span><span class="o">&amp;</span> <span class="n">p1</span><span class="p">,</span> <span class="k">const</span> <span class="n">point</span><span class="o">&amp;</span> <span class="n">p2</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">p1</span><span class="p">.</span><span class="n">sum</span> <span class="o">&lt;</span> <span class="n">p2</span><span class="p">.</span><span class="n">sum</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>  <span class="n">sumCmp</span><span class="p">;</span>
+
+<span class="k">struct</span> <span class="p">{</span>
+    <span class="kt">bool</span> <span class="k">operator</span><span class="p">()</span> <span class="p">(</span><span class="k">const</span> <span class="n">point</span><span class="o">&amp;</span> <span class="n">p1</span><span class="p">,</span> <span class="k">const</span> <span class="n">point</span><span class="o">&amp;</span> <span class="n">p2</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">p1</span><span class="p">.</span><span class="n">diff</span> <span class="o">&lt;</span> <span class="n">p2</span><span class="p">.</span><span class="n">diff</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>  <span class="n">diffCmp</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">N</span><span class="p">;</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">N</span><span class="p">;</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="n">point</span><span class="o">&gt;</span> <span class="n">v</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">;</span>
+        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">x</span> <span class="o">&gt;&gt;</span> <span class="n">y</span><span class="p">;</span>
+        <span class="n">v</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">point</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">));</span>
+    <span class="p">}</span>
+
+    <span class="kt">int</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="n">sort</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">xCmp</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">nSame</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">x</span> <span class="o">==</span> <span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">nSame</span> <span class="o">++</span><span class="p">;</span>
+            <span class="n">ans</span> <span class="o">+=</span> <span class="n">nSame</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="p">{</span>
+            <span class="n">nSame</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="n">sort</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">yCmp</span><span class="p">);</span>
+    <span class="n">nSame</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">y</span> <span class="o">==</span> <span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="n">y</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">nSame</span> <span class="o">++</span><span class="p">;</span>
+            <span class="n">ans</span> <span class="o">+=</span> <span class="n">nSame</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="p">{</span>
+            <span class="n">nSame</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="n">sort</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">sumCmp</span><span class="p">);</span>
+    <span class="n">nSame</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">sum</span> <span class="o">==</span> <span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="n">sum</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">nSame</span> <span class="o">++</span><span class="p">;</span>
+            <span class="n">ans</span> <span class="o">+=</span> <span class="n">nSame</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="p">{</span>
+            <span class="n">nSame</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="n">sort</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">diffCmp</span><span class="p">);</span>
+    <span class="n">nSame</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">diff</span> <span class="o">==</span> <span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="n">diff</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">nSame</span> <span class="o">++</span><span class="p">;</span>
+            <span class="n">ans</span> <span class="o">+=</span> <span class="n">nSame</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="p">{</span>
+            <span class="n">nSame</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ans</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+    </div>
+  </li>
+</ul>
+
+<h4 id="思路3计数排序on-ac">思路3：计数排序[O(n), AC]</h4>
+
+<p>这个思路是和室友在讨论时获得的，既然我们只需要统计每个攻击条件下某个位置的皇后数，那完全没必要使用$nlgn$级别的排序，直接使用计数排序就好了呀（当然，由于坐标范围比较大， 因此在具体实现时需要采用unordered_map来计数）。</p>
+
+<p>由于unrodered_map的插入和访问时间复杂度均为$O(1)$，因此该思路的时间复杂对为$O(n)$。代码如下（同样的，虽然代码仍然可以继续简化，但为了可读性我放弃了）：</p>
+
+<div class="language-c++ highlighter-rouge"><pre class="highlight"><code><span class="c1">// 省略include和point的定义
+</span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">N</span><span class="p">;</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">N</span><span class="p">;</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="n">point</span><span class="o">&gt;</span> <span class="n">v</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">;</span>
+        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">x</span> <span class="o">&gt;&gt;</span> <span class="n">y</span><span class="p">;</span>
+        <span class="n">v</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">point</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">));</span>
+    <span class="p">}</span>
+
+    <span class="kt">int</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  	<span class="c1">// 统计每种攻击条件下位于"相同位置"的皇后的数量。
+</span>    <span class="n">unordered_map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">countx</span><span class="p">;</span>
+    <span class="n">unordered_map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">county</span><span class="p">;</span>
+    <span class="n">unordered_map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">countsum</span><span class="p">;</span>
+    <span class="n">unordered_map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">countdiff</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">countx</span><span class="p">[</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">x</span><span class="p">]</span> <span class="o">++</span><span class="p">;</span>
+        <span class="n">county</span><span class="p">[</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">y</span><span class="p">]</span> <span class="o">++</span><span class="p">;</span>
+        <span class="n">countsum</span><span class="p">[</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">sum</span><span class="p">]</span> <span class="o">++</span><span class="p">;</span>
+        <span class="n">countdiff</span><span class="p">[</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">diff</span><span class="p">]</span> <span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+  	<span class="c1">// 计算行攻击的皇后对数
+</span>    <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="n">cx</span><span class="o">:</span> <span class="n">countx</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="n">cx</span><span class="p">.</span><span class="n">second</span><span class="p">;</span>
+        <span class="n">ans</span> <span class="o">+=</span> <span class="p">(</span><span class="n">c</span> <span class="o">*</span> <span class="p">(</span><span class="n">c</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="p">}</span>
+  	<span class="c1">// 列
+</span>    <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="n">cx</span><span class="o">:</span> <span class="n">county</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="n">cx</span><span class="p">.</span><span class="n">second</span><span class="p">;</span>
+        <span class="n">ans</span> <span class="o">+=</span> <span class="p">(</span><span class="n">c</span> <span class="o">*</span> <span class="p">(</span><span class="n">c</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="p">}</span>
+  	<span class="c1">// 坐标和
+</span>    <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="n">cx</span><span class="o">:</span> <span class="n">countsum</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="n">cx</span><span class="p">.</span><span class="n">second</span><span class="p">;</span>
+        <span class="n">ans</span> <span class="o">+=</span> <span class="p">(</span><span class="n">c</span> <span class="o">*</span> <span class="p">(</span><span class="n">c</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="p">}</span>
+  	<span class="c1">// 坐标差
+</span>    <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="n">cx</span><span class="o">:</span> <span class="n">countdiff</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="n">cx</span><span class="p">.</span><span class="n">second</span><span class="p">;</span>
+        <span class="n">ans</span> <span class="o">+=</span> <span class="p">(</span><span class="n">c</span> <span class="o">*</span> <span class="p">(</span><span class="n">c</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ans</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h2 id="题目2-diligent-robots">题目2 <a href="https://hihocoder.com/problemset/problem/1498">Diligent Robots</a></h2>
+
+<p>时间限制:10000ms</p>
+
+<p>单点时限:1000ms</p>
+
+<p>内存限制:256MB</p>
+
+<h3 id="描述-1">描述</h3>
+
+<p>There are N jobs to be finished. It takes a robot 1 hour to finish one job.</p>
+
+<p>At the beginning you have only one robot. Luckily a robot may build more robots identical to itself. It takes a robot Q hours to build another robot.</p>
+
+<p>So what is the minimum number of hours to finish N jobs?</p>
+
+<p>Note two or more robots working on the same job or building the same robot won’t accelerate the progress.</p>
+
+<h3 id="输入-1">输入</h3>
+
+<p>The first line contains 2 integers, N and Q.</p>
+
+<p>For 70% of the data, 1 &lt;= N &lt;= 1000000</p>
+
+<p>For 100% of the data, 1 &lt;= N &lt;= 1000000000000, 1 &lt;= Q &lt;= 1000</p>
+
+<h3 id="输出-1">输出</h3>
+
+<p>The minimum number of hours.</p>
+
+<p>样例输入</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>10 1
+</code></pre>
+</div>
+
+<p>样例输出</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>5
+</code></pre>
+</div>
+<h3 id="思路-1">思路</h3>
+
+<h4 id="思路1枚举复制了多少个机器人on-80">思路1：枚举复制了多少个机器人[O(n) 80%]</h4>
+
+<p>首先我们可以知道机器人复制一定发生在开始工作之前，即应该是复制完所有机器人以后才开始工作的（当然，当复制最后几个机器人时未参与复制的那些机器人可以先开始工作）。</p>
+
+<p>设在总过程中共有x个机器人参与工作，即复制了x-1个机器人，则我们可以知道复制周期为<code class="highlighter-rouge">k=ceil(log2(x))</code>。故花费在复制上面的时间为<code class="highlighter-rouge">t1=Q*k</code>，由于最后一个复制周期中可能存在机器人不参与复制，因此这部分机器人将完成一部分的工作，剩余的工作量为<code class="highlighter-rouge">N1=N-(pow(2, k) - x) * Q</code>。故完成所有工作的总时间为<code class="highlighter-rouge">t=t1 + ceil(float(N1)/x)</code>。</p>
+
+<p>因此我们就可以从小到大开始枚举x，然后计算所需时间$t(x)$，直至找到一个最优解。</p>
+
+<p>下面我们需要解决的问题就是x的枚举上界。显然，x不应该大于N，其次，我们可以看出来总时间应该是随x先下降后增加的。因此我们可以在遍历x的过程中查看时间代价是否比复制x-1个机器人多，若多，则说明已经开始上升了，最优解不可能存在于x之后，不必继续遍历。</p>
+
+<p>基于以上观察，可写出代码如下（通过了80%的样例，另外20%的样例超时）：</p>
+
+<div class="language-c++ highlighter-rouge"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+#include &lt;cmath&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="cp">#define INT_MAX 1000000000000
+</span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+    <span class="kt">long</span> <span class="kt">long</span> <span class="n">N</span><span class="p">,</span> <span class="n">Q</span><span class="p">;</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">N</span> <span class="o">&gt;&gt;</span> <span class="n">Q</span><span class="p">;</span>
+    <span class="kt">long</span> <span class="kt">long</span> <span class="n">ans</span> <span class="o">=</span> <span class="n">INT_MAX</span><span class="p">;</span>
+    <span class="kt">long</span> <span class="kt">long</span> <span class="n">t_before</span> <span class="o">=</span> <span class="n">INT_MAX</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="n">N</span><span class="p">;</span> <span class="n">x</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">long</span> <span class="kt">long</span> <span class="n">k</span> <span class="o">=</span> <span class="n">ceil</span><span class="p">(</span><span class="n">log2</span><span class="p">(</span><span class="kt">float</span><span class="p">(</span><span class="n">x</span><span class="p">)));</span>
+        <span class="kt">long</span> <span class="kt">long</span> <span class="n">t1</span> <span class="o">=</span> <span class="n">Q</span> <span class="o">*</span> <span class="n">k</span><span class="p">;</span>
+        <span class="kt">long</span> <span class="kt">long</span> <span class="n">N1</span> <span class="o">=</span> <span class="n">N</span> <span class="o">-</span> <span class="p">(</span><span class="n">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="n">k</span><span class="p">)</span> <span class="o">-</span> <span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="n">Q</span><span class="p">;</span>
+        <span class="kt">long</span> <span class="kt">long</span> <span class="n">t</span> <span class="o">=</span> <span class="n">t1</span> <span class="o">+</span> <span class="n">ceil</span><span class="p">(</span><span class="kt">float</span><span class="p">(</span><span class="n">N1</span><span class="p">)</span><span class="o">/</span><span class="n">x</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">t</span> <span class="o">&gt;</span> <span class="n">t_before</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">ans</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span> <span class="n">t</span><span class="p">);</span>
+        <span class="n">t_before</span> <span class="o">=</span> <span class="n">t</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ans</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h4 id="思路2只允许全部复制olgn-ac">思路2：只允许全部复制[$O(lgn)$ AC]</h4>
+
+<p>思路1中比较麻烦的一点就是可能存在部分复制，即允许在最后一个复制周期中存在机器人不参与复制。如果能去除掉这种可能就好了。</p>
+
+<p>幸运的是，通过证明我们可以发现，部分复制不可能是最优解，因此我们可以大胆的将之抛弃，代码如下：</p>
+
+<div class="language-c++ highlighter-rouge"><pre class="highlight"><code><span class="cp">#include &lt;cmath&gt;
+#include &lt;cstdio&gt;
+#include &lt;iostream&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="cp">#define INF 1000000000000
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">long</span> <span class="kt">long</span> <span class="n">N</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">Q</span><span class="p">;</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">N</span> <span class="o">&gt;&gt;</span> <span class="n">Q</span><span class="p">;</span>
+    <span class="kt">long</span> <span class="kt">long</span> <span class="n">t</span> <span class="o">=</span> <span class="n">INF</span><span class="p">;</span>
+    <span class="kt">long</span> <span class="kt">long</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="kt">long</span> <span class="kt">long</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="p">(</span><span class="kt">long</span> <span class="kt">long</span><span class="p">)</span><span class="n">ceil</span><span class="p">((</span><span class="kt">float</span><span class="p">(</span><span class="n">N</span><span class="p">)</span><span class="o">/</span><span class="n">x</span><span class="p">))</span> <span class="o">+</span> <span class="n">count</span> <span class="o">*</span> <span class="n">Q</span><span class="p">);</span>
+        <span class="n">count</span> <span class="o">++</span><span class="p">;</span>
+        <span class="n">x</span> <span class="o">&lt;&lt;=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">t</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>证明过程见下（若对证明部分不感兴趣可忽略）：</p>
+
+<p>显然，对于全复制方案，复制k轮后机器人总数为$2^k$。</p>
+
+<p>设某部分复制方案最终有x个机器人参与工作，则$\exists k \in N, 2^k &lt; x &lt; 2^{k+1}$。我们可以证明一个很强的结论：部分复制不可能比两端的全复制更优。即$t(x) &lt; t(2^k), t(x) &lt; t(2^{k+1})$不可能同时成立。</p>
+
+<p>由思路1我们可以知道：</p>
+
+<ul>
+  <li>$t(2^k) = kQ + \lceil \frac{N}{2^k} \rceil$</li>
+  <li>$t(2^{k+1}) = (k+1)Q + \lceil \frac{N}{2^{k+1}} \rceil$</li>
+  <li>$t(x) = (k+1)Q +  \lceil \frac{N - (2^{k+1} - x)Q}{x} \rceil$</li>
+</ul>
+
+<p>又 $t(x) &lt; t(2^k) $</p>
+
+<p>$\Leftrightarrow kQ + \lceil \frac{N}{2^k} \rceil - ((k+1)Q +  \lceil \frac{N - (2^{k+1} - x)Q}{x} \rceil) &gt; 0$</p>
+
+<p>$\Leftrightarrow \lceil \frac{N}{2^k} \rceil &gt; \lceil \frac{xQ + N - (2^{k+1} - x)Q}{x} \rceil$</p>
+
+<p>$\Leftrightarrow \frac{N}{2^k}  &gt; \frac{N - 2^{k+1}Q + xQ}{x}$</p>
+
+<p>$\Leftrightarrow N &gt; 2^{k+1}Q$</p>
+
+<p>另一方面 $t(x) &lt; t(2^{k+1}) $</p>
+
+<p>$\Leftrightarrow (k+1)Q + \lceil \frac{N}{2^{k+1}} \rceil - ((k+1)Q +  \lceil \frac{N - (2^{k+1} - x)Q}{x} \rceil) &gt; 0$</p>
+
+<p>$\Leftrightarrow \lceil \frac{N}{2^{k+1}} \rceil &gt; \lceil \frac{N - (2^{k+1} - x)Q}{x} \rceil $</p>
+
+<p>$\Leftrightarrow \frac{N}{2^{k+1}} &gt; \frac{N - (2^{k+1} - x)Q}{x}$</p>
+
+<p>$\Leftrightarrow N &lt; 2^{k+1}Q$</p>
+
+<p>$N &gt; 2^{k+1}Q$ 和$N &gt; 2^{k+1}Q$为两个矛盾的条件，故$t(x) &lt; t(2^k) $和$t(x) &lt; t(2^{k+1}) $不可能同时成立。</p>
+
+<p>证毕。</p>
+
+<h4 id="思路三直接求解o1-ac">思路三：直接求解[O(1) AC]</h4>
+
+<p>其实，既然最优解不可能来自部分复制，那剩余的可能性就不多了，我们是否可以直接求出最优解呢？幸运的是，可以的，证明如下：</p>
+
+<p>由于$t(2^k) = kQ + \lceil \frac{N}{2^k} \rceil$，故对于最优解，有$t(2^{k-1}) \leq t(2^k) \leq t(2^{k+1})$ 或 $k = 0$。
+若后者成立，则代表最优解发生在不发生任何复制时，这时候有$Q \geq N$。
+若前者成立，则
+$t(2^{k} \leq t(2^{k+1}) \Leftrightarrow \frac{N}{2^{k+1}} + Q - \frac{N}{2^{k}} \geq 0 \Leftrightarrow k+1  \geq log_2{\frac{N}{Q}}$</p>
+
+<p>$t(2^{k-1} \leq t(2^{k}) \Leftrightarrow k  \leq log_2{\frac{N}{Q}}$</p>
+
+<p>因此$k=\lfloor  log_2{\frac{N}{Q}} \rfloor$</p>
+
+<p>代码如下：</p>
+
+<div class="language-c++ highlighter-rouge"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+#include &lt;cmath&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">double</span> <span class="n">N</span><span class="p">,</span> <span class="n">Q</span><span class="p">;</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">N</span> <span class="o">&gt;&gt;</span> <span class="n">Q</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">Q</span> <span class="o">&gt;=</span> <span class="n">N</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">N</span><span class="p">;</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">floor</span><span class="p">(</span><span class="n">log2</span><span class="p">(</span><span class="n">N</span> <span class="o">/</span> <span class="n">Q</span><span class="p">));</span>
+    <span class="kt">int</span> <span class="n">ans</span> <span class="o">=</span> <span class="n">k</span> <span class="o">*</span> <span class="n">Q</span> <span class="o">+</span> <span class="n">ceil</span><span class="p">(</span><span class="n">N</span> <span class="o">/</span> <span class="n">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">k</span><span class="p">));</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ans</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h3 id="题目3a-box-of-coins">题目3：<a href="https://hihocoder.com/problemset/problem/1499">A Box of Coins</a></h3>
+
+<p>时间限制:10000ms</p>
+
+<p>单点时限:1000ms</p>
+
+<p>内存限制:256MB</p>
+
+<h3 id="描述-2">描述</h3>
+
+<p>Little Hi has a box which consists of 2xN cells as illustrated below.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>+----+----+----+----+----+----+
+| A1 | A2 | A3 | A4 | .. | AN |
++----+----+----+----+----+----+
+| B1 | B2 | B3 | B4 | .. | BN |
++----+----+----+----+----+----+
+
+</code></pre>
+</div>
+
+<p>There are some coins in each cell. For the first row the amounts of coins are A1, A2, … AN and for the second row the amounts are B1, B2, … BN.</p>
+
+<p>Each second Little Hi can pick one coin from a cell and put it into an adjacent cell. (Two cells are adjacent if they share a common side. For example, A1 and A2 are adjacent; A1 and B1 are adjacent; A1 and B2 are not adjacent.)</p>
+
+<p>Now Little Hi wants that each cell has equal number of coins by moving the coins. He wants to know the minimum number of seconds he needs to accomplish it.</p>
+
+<h3 id="输入-2">输入</h3>
+
+<p>The first line contains an integer, N. 2 &lt;= N &lt;= 100000</p>
+
+<p>Then follows N lines. Each line contains 2 integers Ai and Bi. (0 &lt;= Ai, Bi &lt;= 2000000000)</p>
+
+<p>It is guaranteed that the total amount of coins in the box is no more than 2000000000 and is a multiple of 2N.</p>
+
+<h3 id="输出-2">输出</h3>
+
+<p>The minimum number of seconds.</p>
+
+<h4 id="样例输入-1">样例输入</h4>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>2
+3 4
+6 7
+</code></pre>
+</div>
+
+<h4 id="样例输出-1">样例输出</h4>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>4
+</code></pre>
+</div>
+
+<h3 id="思路-2">思路</h3>
+
+<h4 id="思路1简化问题错误">思路1：简化问题[错误]</h4>
+
+<p>考试的时候，看到这道题我就想起来以前在刘汝佳的《算法竞赛入门经典训练指南》里看到的那道<a href="https://uva.onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;category=456&amp;page=show_problem&amp;problem=2275">分金币题</a>。</p>
+
+<p>那道题的设定是一个环，相邻的人可以互给金币，求最少可以转移多少金币使得每个人手中的金币数量相等。最终使用求中位数的方式在$O(n)$的时间复杂度下解决。</p>
+
+<p>由于是考试，没有太多时间让我去慢慢证明这两道题的设定是等价的，于是我就先把代码写出来提交上去试试，结果发现不等价，当时没有进一步的思路，于是放下了这道题，去做下一道题。(错误的代码就不再贴了)</p>
+
+<h4 id="思路2贪心on-ac">思路2：贪心[O(n), AC]</h4>
+
+<p>这是在考完后和室友讨论时室友提出的思路，把一列先当成一个整体，则列与列之间需要传递的金币数是可以直接算出来的，而每一列的两行之间也只需相互弥补即可。实现的过程中需要注意的是ans可能会大于$\text{INT_MAX}$，因此ans也需要使用long long储存。</p>
+
+<p>代码如下：</p>
+
+<div class="language-c++ highlighter-rouge"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">long</span> <span class="kt">long</span> <span class="n">N</span><span class="p">,</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kt">long</span> <span class="kt">long</span> <span class="n">avg</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">N</span><span class="p">;</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">long</span> <span class="kt">long</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">tab</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">long</span> <span class="kt">long</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">tab</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="n">tab</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">];</span>
+        <span class="n">avg</span> <span class="o">+=</span> <span class="n">tab</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">tab</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="n">avg</span> <span class="o">/=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">N</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">long</span> <span class="kt">long</span> <span class="n">col</span> <span class="o">=</span> <span class="n">tab</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">tab</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">];</span>
+        <span class="n">ans</span> <span class="o">+=</span> <span class="n">abs</span><span class="p">(</span><span class="n">col</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">avg</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">col</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">avg</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">tab</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">avg</span> <span class="o">&amp;&amp;</span> <span class="n">tab</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">avg</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">tab</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="n">tab</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">avg</span><span class="p">;</span>
+                <span class="n">tab</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="n">tab</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">avg</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">else</span>
+            <span class="p">{</span>
+                <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">tab</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">avg</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="mi">1</span><span class="p">;</span>
+                <span class="n">ans</span> <span class="o">+=</span> <span class="n">avg</span> <span class="o">-</span> <span class="n">tab</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span> <span class="o">-</span> <span class="n">j</span><span class="p">];</span>
+                <span class="n">tab</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">+=</span> <span class="n">col</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">avg</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">col</span> <span class="o">&lt;=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">avg</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">tab</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">avg</span> <span class="o">&amp;&amp;</span> <span class="n">tab</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">avg</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">tab</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="n">tab</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">avg</span><span class="p">;</span>
+                <span class="n">tab</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="n">tab</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">avg</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">else</span>
+            <span class="p">{</span>
+                <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">tab</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">avg</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="mi">1</span><span class="p">;</span>
+                <span class="n">ans</span> <span class="o">+=</span> <span class="n">tab</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span> <span class="o">-</span> <span class="n">j</span><span class="p">]</span> <span class="o">-</span> <span class="n">avg</span><span class="p">;</span>
+                <span class="n">tab</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">+=</span> <span class="n">col</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">avg</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">ans</span> <span class="o">+=</span> <span class="n">abs</span><span class="p">(</span><span class="n">tab</span><span class="p">[</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">avg</span><span class="p">);</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ans</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h3 id="题目4-el-sueno">题目4： <a href="https://hihocoder.com/problemset/problem/1500">EL SUENO</a></h3>
+
+<p>时间限制:10000ms</p>
+
+<p>单点时限:1000ms</p>
+
+<p>内存限制:256MB</p>
+
+<h3 id="描述-3">描述</h3>
+
+<p>In a video game, Little Hi is going to assassinate the leader of an evil group, EL SUENO.</p>
+
+<p>There are N high-value targets in the group, numbered from 1 to N. Each target has another target as his direct superior except for EL SUENO who has no superior. So the superior-subordinate hierarchy forms a tree-like structure. EL SUENO is at the root.</p>
+
+<p>The cost of assassinating the i-th target is Ci. Before assassinating a target Little Hi has to obtain enough information about him. For the i-th target, Little Hi needs INi units of information. By assassinating a target Little Hi will obtain some information about the target’s direct superior. More specifically, the i-th target has IPi units of information about his superior. So in order to assassinate EL SUENO, Little Hi needs to assassinate some of his direct subordinates so that the sum of information obtained is enough; assassinating the subordinates needs to assassinate their direct subordinates … until it reaches some targets require zero information in advance. (Luckily if a target has no subordinate he always requires zero information.)</p>
+
+<p>How Little Hi wants to know what is the minimum cost for successful assassinating EL SUENO.</p>
+
+<h3 id="输入-3">输入</h3>
+
+<p>The first line contains an integer N.</p>
+
+<p>Then follow N lines. Each line describes a target with 4 integers, Fi, INi, IPi, Ci.</p>
+
+<p>Fi is i-th target’s superior. For EL SUENO his Fi is zero.</p>
+
+<p>INi is the amount of information needed to assassinate the i-th target. For a target has no subordinates his INi is always zero.</p>
+
+<p>IPi is the amount of information the i-th target has about his superior Fi.</p>
+
+<p>Ci is the cost of assassinating the i-th target.</p>
+
+<p>For 30% of the data, 1 &lt;= N &lt;= 10, 0 &lt;= INi, IPi &lt;= 100</p>
+
+<p>For 60% of the data, 1 &lt;= N &lt;= 100, 0 &lt;= INi, IPi &lt;= 1000</p>
+
+<p>For 100% of the data, 1 &lt;= N &lt;= 2000, 0 &lt;= Fi &lt;= N, 0 &lt;= INi, IPi &lt;= 20000, 1 &lt;= Ci &lt;= 1000.</p>
+
+<p>It is guaranteed that the N targets form a tree structure.</p>
+
+<h3 id="输出-3">输出</h3>
+
+<p>The minimum cost. If Little Hi is not able to assassinate EL SUENO output a number -1.</p>
+
+<h4 id="样例输入-2">样例输入</h4>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>6
+2 1 2 2
+0 4 0 2
+2 0 2 5
+2 0 2 6
+1 0 1 2
+1 0 1 3
+</code></pre>
+</div>
+
+<h4 id="样例输出-2">样例输出</h4>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>11
+</code></pre>
+</div>
+
+<h3 id="思路-3">思路</h3>
+
+<p>这道题可以通过dfs来解决，对于每一个节点，若杀死该节点所需的信息量为0，则杀死该节点的最小代价为$C_i$，否则，首先递归计算其所有孩子是否能被杀死，若能，则计算杀死该孩子$child_i$所需要的最小代价$cost_i$。</p>
+
+<p>若已经得知了所有孩子节点的信息，设能杀死的孩子节点集为$s$，杀死$s$中的孩子的最小代价集为$costs = {cost_{s_i}}$，可获得的信息量为$ips = {IP_{s_i}}$。则问题转换为从$ips$中选取一些元素使得</p>
+
+<ol>
+  <li>元素和大于杀死当前节点的$IN$值。</li>
+  <li>对应的代价和最小。</li>
+</ol>
+
+<p>这是一个最小背包问题，可用动态规划解决。需要注意的是如果使用一维动态规划则数组遍历方式为从高到低，防止脏读。</p>
+
+<p>代码如下：</p>
+
+<div class="language-c++ highlighter-rouge"><pre class="highlight"><code><span class="cp">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="cp">#define INF 1000000000
+</span><span class="kt">long</span> <span class="kt">long</span> <span class="nf">max</span><span class="p">(</span><span class="kt">long</span> <span class="kt">long</span> <span class="n">a</span><span class="p">,</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="n">b</span> <span class="o">?</span> <span class="n">a</span> <span class="o">:</span> <span class="n">b</span><span class="p">;</span> <span class="p">}</span>
+<span class="kt">long</span> <span class="kt">long</span> <span class="nf">min</span><span class="p">(</span><span class="kt">long</span> <span class="kt">long</span> <span class="n">a</span><span class="p">,</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="n">b</span> <span class="o">?</span> <span class="n">a</span> <span class="o">:</span> <span class="n">b</span><span class="p">;</span> <span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">node</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">node</span> <span class="o">*</span><span class="n">p</span><span class="p">;</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="n">node</span><span class="o">*&gt;</span> <span class="n">childs</span><span class="p">;</span>
+    <span class="kt">long</span> <span class="kt">long</span> <span class="n">c</span><span class="p">,</span> <span class="n">in</span><span class="p">,</span> <span class="n">ip</span><span class="p">;</span>
+    <span class="n">node</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">long</span> <span class="kt">long</span><span class="o">&gt;&amp;</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">in</span> <span class="o">=</span> <span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+        <span class="n">ip</span> <span class="o">=</span> <span class="n">v</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">v</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="nb">nullptr</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">long</span> <span class="kt">long</span> <span class="nf">dfs</span><span class="p">(</span><span class="n">node</span><span class="o">*</span> <span class="n">root</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">long</span> <span class="kt">long</span><span class="o">&gt;</span> <span class="n">tab</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">long</span> <span class="kt">long</span><span class="o">&gt;</span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">in</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">INF</span><span class="p">));</span>
+    <span class="n">tab</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="n">c</span><span class="o">:</span> <span class="n">root</span><span class="o">-&gt;</span><span class="n">childs</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">long</span> <span class="kt">long</span> <span class="n">costAll</span> <span class="o">=</span> <span class="n">dfs</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">long</span> <span class="kt">long</span> <span class="n">j</span> <span class="o">=</span> <span class="n">root</span><span class="o">-&gt;</span><span class="n">in</span><span class="p">;</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">j</span> <span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">tab</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">tab</span><span class="p">[</span><span class="n">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">j</span><span class="o">-</span><span class="n">c</span><span class="o">-&gt;</span><span class="n">ip</span><span class="p">)]</span> <span class="o">+</span> <span class="n">costAll</span><span class="p">,</span> <span class="n">tab</span><span class="p">[</span><span class="n">j</span><span class="p">]);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">tab</span><span class="p">[</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">in</span><span class="p">]</span> <span class="o">+</span> <span class="n">root</span><span class="o">-&gt;</span><span class="n">c</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+    <span class="kt">long</span> <span class="kt">long</span> <span class="n">N</span><span class="p">;</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">N</span><span class="p">;</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">long</span> <span class="kt">long</span><span class="o">&gt;&gt;</span> <span class="n">v</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">long</span> <span class="kt">long</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">long</span> <span class="kt">long</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">long</span> <span class="kt">long</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="n">j</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">];</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="c1">// insert
+</span>    <span class="n">node</span><span class="o">*</span> <span class="n">root</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="n">node</span><span class="o">*&gt;</span> <span class="n">i2node</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">long</span> <span class="kt">long</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">node</span><span class="o">*</span> <span class="n">cur</span> <span class="o">=</span> <span class="k">new</span> <span class="n">node</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+        <span class="n">i2node</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">cur</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">root</span> <span class="o">=</span> <span class="n">cur</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">long</span> <span class="kt">long</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">i</span><span class="p">;</span> <span class="n">j</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">==</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">cur</span><span class="o">-&gt;</span><span class="n">childs</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">i2node</span><span class="p">[</span><span class="n">j</span><span class="p">]);</span>
+                <span class="n">i2node</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">p</span> <span class="o">=</span> <span class="n">cur</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">==</span> <span class="n">j</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">cur</span><span class="o">-&gt;</span><span class="n">p</span> <span class="o">=</span> <span class="n">i2node</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+                <span class="n">i2node</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">childs</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">cur</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="c1">// dfs
+</span>    <span class="kt">long</span> <span class="kt">long</span> <span class="n">ans</span> <span class="o">=</span> <span class="n">dfs</span><span class="p">(</span><span class="n">root</span><span class="p">);</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">ans</span> <span class="o">&lt;</span> <span class="n">INF</span> <span class="o">?</span> <span class="n">ans</span> <span class="o">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+  <span class="post-tags">
+      
+    	# <a href="/archives/tag/feminism/">feminism</a>
+      
+    	# <a href="/archives/tag/anti-capitalism/">anti-capitalism</a>
+      
+    	# <a href="/archives/tag/f-k/">f**k</a>
+      
+  </span>
+  
+</article>
+
+<!-- Comment -->
+
+<hr>
+<div id="container"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  // id: '页面 ID', // 可选。默认为 location.href
+  owner: 'b-liu14',
+  repo: 'b-liu14.github.io',
+  oauth: {
+    client_id: '330c080c67573c519f91',
+    client_secret: '3244461d56607775294995b638885104a7df5b35',
+  },
+})
+gitment.render('container')
+</script>
+
+
+
+<footer class="footer">
+	<div class="col">
+		© 2017-2019 kevin's blog | <a href="/feed.xml" class="subscribe">RSS</a>
+	</div>
+</footer>
+
+
+<div style="display:none">
+<script src="https://s4.cnzz.com/z_stat.php?id=1261710020&web_id=1261710020" language="JavaScript"></script>
+</div>
+
+</body>
+</html>
