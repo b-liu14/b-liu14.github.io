@@ -3,8 +3,8 @@ domain: "https://b-liu14.github.io"
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "https://b-liu14.github.io" # the base hostname & protocol for your site
 permalink: /:title/
-avatar: /static/avatar.JPG
-about: /static/about.JPG
+avatar: /static/image/avatar.JPG
+about: /static/image/about.JPG
 favicon: http://7xof48.com1.z0.glb.clouddn.com/favicon.png
 CV-en: "/media/CV-Bin Liu-Tsinghua University-17888825884.pdf"
 CV-zh: "/media/中文简历-刘斌-清华大学软件学院-17888825884.pdf"
