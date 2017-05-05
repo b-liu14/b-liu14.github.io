@@ -8,3 +8,5 @@ Thanks for [songroger](https://songroger.github.io/murmur/) to provide this marv
 * 将archive链接添加入首页【**】
 * 美化相关样式【*】
 * 解决在git-pages上生效的问题【****】
+* archives中加入pagenate
+* 为archives添加index.html
