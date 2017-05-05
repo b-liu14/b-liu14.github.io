@@ -16,6 +16,17 @@ layout: default
     	# <a href="/{{ site.tag_page_dir }}/{{ tag | slugify }}/">{{ tag }}</a>
       {% endfor %}
   </span>
+
+    <div class="PageNavigation">
+      {% if page.previous.url %}
+        <a class="prev" href="{{page.previous.url}}">&laquo; {{ page.previous.title | truncate: 20 }}</a>
+      {% else %}
+      <a class="prev"></a>
+      {% endif %}
+      {% if page.next.url %}
+        <a class="next" href="{{page.next.url}}">{{ page.next.title | truncate: 20 }} &raquo;</a>
+      {% endif %}
+    </div>
   {% if page.tail %}
     <div class="post-tags">{{ page.tail }}</div>
   {% endif %}
