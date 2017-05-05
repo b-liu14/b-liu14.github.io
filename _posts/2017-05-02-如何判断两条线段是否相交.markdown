@@ -9,9 +9,9 @@ tags: algorithm C++
 ---
 ---
 
-前几天参加阿里的笔试，遇到了一道有趣的题目，题目大致意思是说有一个矩形墓室，入口的位置为(0,0)，出口位置为(m,n)。墓室中散步着一些散光发射器，某些激光发射器之间有激光。m,n和激光的起始和终止位置(x1,y1,x2,y2)均为整数。请问能否在不碰到激光的情况下从入口走到出口。
+ 前几天参加阿里的笔试，遇到了一道有趣的题目，题目大致意思是说有一个矩形墓室，入口的位置为(0,0)，出口位置为(m,n)。墓室中散步着一些散光发射器，某些激光发射器之间有激光。m,n和激光的起始和终止位置(x1,y1,x2,y2)均为整数。请问能否在不碰到激光的情况下从入口走到出口。
 
-![ali](/static/post/2017-05-02-如何判断两条线段是否相交/ali.jpeg)
+![ali](/static/image/post/2017-05-02-如何判断两条线段是否相交/ali.jpeg)
 
 这道题不需要我们求解出路线，只需判定是否有解即可。可以通过将所有激光按照是否相互交叉分为几堆，对于每一堆分别考虑，若其堵住了从入口到出口的所有路（具体表现为横穿或纵穿整个墓室，或者占据左下角或右上角），则无解，否则总可以绕过这些激光。
 
@@ -21,7 +21,7 @@ tags: algorithm C++
 
 $cross = \|\|AB \times AC\|\| \cdot \|\|AB \times AD\|\| \leq 0 \land \|\|CD \times CA\|\| \cdot \|\|CB \times CD\|\|\leq 0 $
 
-![line-cross](/static/post/2017-05-02-如何判断两条线段是否相交/line-cross.png)
+![line-cross](/static/image/post/2017-05-02-如何判断两条线段是否相交/line-cross.png)
 
 上面的判定方法几乎完美，可惜，只是“几乎”，有一种情况没法处理，那就是AB，CD共线但是不相交的情况，在这种情况下$\|\|AB \times AC\|\| = \|\|AB\times AD\|\| = \|\|CD \times CA\|\| = \|\|CB \times CD\|\| = 0$。
 
@@ -59,8 +59,6 @@ bool cross(Pos A,Pos B,Pos C,Pos D) {
 }
 
 int main() {
-    cout << crossProduct(Pos(0, 0), Pos(0, 1), Pos(0, 2)) << endl;
-
     bool ans;
     // cross
     ans = cross(Pos(0, 0), Pos(1, 1), Pos(0, 1), Pos(1, 0));
@@ -89,4 +87,17 @@ int main() {
     cout << "coincidence(1): " << ans << endl;
     return 0;
 }
+```
+
+程序运行结果如下：
+
+```c++
+cross(1): 1
+Concurrent(1): 1
+parallel(0): 0
+not cross, not parallels(0): 0
+Collinear && Concurrent(1): 1
+Collinear && not Concurrent(0): 0
+ABC is corllinear but ABC, D is not corllinear(0): 0
+coincidence(1): 1
 ```

@@ -12,4 +12,4 @@ tags: mongodb stupid-mistake
 第一次使用mongodb，脑残的自己总是出现各种状况，今天上午花了一个多小时的时间连接数据库，试了各种网上的手段，教程中的方法，反复确认的host，post，username, password， databasename, authMechanism, 总是显示auth failed或者authentic failed，以为遇到了什么很大的bug。
 于是只能请教别人，别人过来一看，你的用户名写错了吧，我一惊，我反复确认过啊，不应该错啊。
 
-仔细一看，果然写错了，我写的用户名是'mp-recom-info'，但真实的用户名是'mp_recom_info'，简直不能再蠢。
+仔细一看，果然写错了，我写的用户名是'mp-recom-info'，但真实的用户名是'mp_recom_info'，简直不能再蠢。😶

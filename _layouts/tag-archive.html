@@ -2,14 +2,15 @@
 layout: default
 ---
 
-<h2>Archive of posts with {{ page.type }} '{{ page.title }}'</h2>
+<h4>{{ page.title }}</h4>
 <ul>
 {% for post in page.posts %}
   <li><a href="{{ post.url }}">{{ post.title }}</a></li>
 {% endfor %}
 </ul>
 
-<h3>All Tags:</h3>
+<h4>All Tags:</h4>
+<ul>
 {% capture tags %}
   {% for tag in site.tags %}
     {{ tag[1].size | plus: 10000 }}#{{ tag[0] }}#{{ tag[1].size }}
@@ -20,3 +21,4 @@ layout: default
     {% assign tagitems = tag | split: '#' %}
     <li><a href="/{{ site.tag_page_dir }}/{{ tagitems[1] | slugify }}/">{{ tagitems[1] }} ({{ tagitems[2] }})</a></li>
 {% endfor %}
+</ul>
