@@ -17,5 +17,5 @@ layout: default
 {% assign sortedtags = tags | split:' ' | sort %}
 {% for tag in sortedtags reversed %}
     {% assign tagitems = tag | split: '#' %}
-    <li><a href="/{{ site.tag_page_dir }}/{{ tag }}/">{{ tagitems[1] }} ({{ tagitems[2] }})</a></li>
+    <li><a href="/{{ site.tag_page_dir }}/{{ tagitems[1] | slugify }}/">{{ tagitems[1] }} ({{ tagitems[2] }})</a></li>
 {% endfor %}
