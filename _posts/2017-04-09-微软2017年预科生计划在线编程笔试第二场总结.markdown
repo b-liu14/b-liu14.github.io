@@ -1,7 +1,7 @@
 ---
 title: "微软2017年预科生计划在线编程笔试第二场总结"
 date: 2017-04-09 15:32:43 +0800
-tags: algorithm C++ 
+tags: algorithm C++
 ---
 ---
 
@@ -12,6 +12,45 @@ tags: algorithm C++
 下面简要记录一下我对于这四道题的想法。
 
 
+
+<!-- toc orderedList:0 depthFrom:1 depthTo:6 -->
+
+* [题目1：Queen Attack](#题目1queen-attackhttpshihocodercomproblemsetproblem1497)
+    * [描述](#描述)
+    * [输入](#输入)
+    * [输出](#输出)
+        * [样例输入](#样例输入)
+        * [样例输出](#样例输出)
+    * [思路](#思路)
+        * [思路1：brute force[$O(n^2)$ 80%]](#思路1brute-forceon2-80)
+        * [思路2：排序[O(nlgn), AC]](#思路2排序onlgn-ac)
+        * [思路3：计数排序[O(n), AC]](#思路3计数排序on-ac)
+* [题目2 Diligent Robots](#题目2-diligent-robotshttpshihocodercomproblemsetproblem1498)
+    * [描述](#描述-1)
+    * [输入](#输入-1)
+    * [输出](#输出-1)
+    * [思路](#思路-1)
+        * [思路1：枚举复制了多少个机器人[O(n) 80%]](#思路1枚举复制了多少个机器人on-80)
+        * [思路2：只允许全部复制[$O(lgn)$ AC]](#思路2只允许全部复制olgn-ac)
+        * [思路三：直接求解[O(1) AC]](#思路三直接求解o1-ac)
+    * [题目3：A Box of Coins](#题目3a-box-of-coinshttpshihocodercomproblemsetproblem1499)
+    * [描述](#描述-2)
+    * [输入](#输入-2)
+    * [输出](#输出-2)
+        * [样例输入](#样例输入-1)
+        * [样例输出](#样例输出-1)
+    * [思路](#思路-2)
+        * [思路1：简化问题[错误]](#思路1简化问题错误)
+        * [思路2：贪心[O(n), AC]](#思路2贪心on-ac)
+    * [题目4： EL SUENO](#题目4-el-suenohttpshihocodercomproblemsetproblem1500)
+    * [描述](#描述-3)
+    * [输入](#输入-3)
+    * [输出](#输出-3)
+        * [样例输入](#样例输入-2)
+        * [样例输出](#样例输出-2)
+    * [思路](#思路-3)
+
+<!-- tocstop -->
 
 ## 题目1：[Queen Attack](https://hihocoder.com/problemset/problem/1497)
 

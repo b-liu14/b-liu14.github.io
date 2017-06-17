@@ -1,0 +1,92 @@
+---
+layout: post
+title: "美团资格赛题解：5"
+date: 2017-06-17 13:16:30 +0800
+categories: diary
+location: Beijing China
+description: 暂无描述
+---
+---
+
+时间限制：1秒
+空间限制：32768K
+
+#### 题目描述
+
+给定两个整数 l 和 r ，对于所有满足1 ≤ l ≤ x ≤ r ≤ 10^9 的 x ，把 x 的所有约数全部写下来。对于每个写下来的数，只保留最高位的那个数码。求1～9每个数码出现的次数。
+
+#### **输入描述:**
+
+```
+一行，两个整数 l 和 r (1 ≤ l ≤ r ≤ 10^9)。
+```
+
+#### **输出描述:**
+
+```
+输出9行。
+第 i 行，输出数码 i 出现的次数。
+```
+
+#### **输入例子:**
+
+```
+1 4
+```
+
+#### **输出例子:**
+
+```
+4
+2
+1
+1
+0
+0
+0
+0
+0
+```
+
+#### 思路：
+
+首先，我们只需要分别计算1-l和1-r的数码出现次数，两个数组相减即可得到答案。因此下面仅仅计算1~n的数码即可。
+
+其次，我们知道，整数m在1~n所有数的因数中出现的次数为$\lfloor \frac{n}{m}\rfloor​$，因此一种很自然的思路是枚举m，可是由于r最大可能为$10^9​$，因此线性时间复杂度肯定是不允许的。
+
+换个思路，对于m比较大时，$|\lfloor \frac{n}{m}\rfloor - \lfloor \frac{n}{m+1}\rfloor| <= 1$，也就是说变化应该是连续的，由此我们可以求出发生变化的位置，而不是枚举每一个数。代码如下：
+
+```c++
+vector<long long> sum(long long r) {
+    vector<long long> ans(10, 0);
+    for(int i = 1; i <= 9; i++) {
+        long long n = i;
+        for(int j = 1; j <= 10; j++) {
+            if(n > r) break;
+            long long maxN = min(r, (i + 1) * (n / i) - 1);
+          	// n 较大时更加变化的位置求解
+            if(n >= 100000) {
+                long long left = r / n, right = r / maxN;
+                for(long long k = left; k >= right; k--) {
+                    ans[i] += k * (min(maxN, r / k) - max(n - 1, r / (k + 1)));
+                }
+            }
+            // n 较小时枚举
+            else {
+                for(long long k = n; k <= maxN; k++) ans[i] += r / k;
+            }
+            n = n * 10;
+        }
+    }
+    return ans;
+}
+
+int main() {
+    int l, r;
+    cin >> l >> r;
+    vector<long long> L = sum(l - 1), R = sum(r);
+    for(int i = 1; i <= 9; i++) cout << R[i] - L[i] << endl;
+    return 0;
+}
+```
+
