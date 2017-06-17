@@ -1,0 +1,11 @@
+---
+layout: post
+title: "博客换域名啦"
+date: 2017-06-07 12:24:10 +0800
+categories: diary
+location: Beijing China
+description: 暂无描述
+---
+---
+
+真是越到期末人越浪，居然开始琢磨着给博客换个域名，原本想在阿里云买一个bin-liu.me的域名，
