@@ -8,4 +8,13 @@ description: 暂无描述
 ---
 ---
 
-真是越到期末人越浪，居然开始琢磨着给博客换个域名，原本想在阿里云买一个bin-liu.me的域名，
+真是越到期末人越浪，都快期末考了还没有开始预习却开始琢磨着给博客换个域名，原本想在阿里云买一个bin-liu.me的域名，结果不小心在Freenom上看到一个bin-liu.ml的域名，正好已经入了炼丹的坑，就申请了一个！希望未来的自己对得起这个域名，能在ml领域做出点什么东西。
+
+在这里稍微记录一下流程：
+1. 在[Freenom](https://my.freenom.com/domains.php)上找一个满意的域名，目前Freenom支持.ML、.CF、.GA、.TK四大顶级域名免费注册，少数特殊的域名需要付费但是只是成本价，当然，免费的不一定好，在稳定性和速度方面会有所欠缺，不过对于我来说倒无所谓。
+
+2. 到Freenom的[域名管理控制台处](https://my.freenom.com/clientarea.php?action=domains)，选择你刚才购买的域名，再点击进入管理DNS解析的界面。
+
+3. 填写两个A记录，我还填了一个前缀为blog的CNAME记录，截图如下：![截图](/static/image/post/2017-06-07-博客换域名啦/WX20170617-134658.png)。其中192.30.252.154，192.30.252.153是gitpages服务器所在位置，由github上的教程给出。教程地址如下：https://help.github.com/articles/configuring-a-publishing-source-for-github-pages/。
+
+4. 到gitpages项目中，设置 > GitHub Pages > Custom domain 中填入你刚刚申请的域名，保存，万事大吉，只需等待Freenom的dns服务器将你的域名扩散到各大dns服务器中就可以了，我当时是等了几分钟就可以通过bin-liu.ml访问我的博客了。
