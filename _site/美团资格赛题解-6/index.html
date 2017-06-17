@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="songroger">
+
+  <title>美团资格赛题解：6</title>
+
+  <meta name="description" content="&lt;hr /&gt;&lt;p&gt;这次美团资格赛，被leetcode惯坏了的我起初很不习惯没有错误样例，总是百思不得其解自己错在哪了，而手动构造的样例也不够大，无法测各种边界情况。在线下测试时，能想到的样例都想到了，可是提交上去还是不能AC，于是开始一场又一场的狗血调试过程。&lt;/p&gt;">
+
+  <!-- Open graph data -->
+  <meta property="og:site_name" content="kevin's blog">
+  <meta property="og:title" content="美团资格赛题解：6">
+  <meta property="og:url" content="http://localhost:4000/%E7%BE%8E%E5%9B%A2%E8%B5%84%E6%A0%BC%E8%B5%9B%E9%A2%98%E8%A7%A3-6/">
+  <meta property="og:type" content="article">
+  <meta property="og:description" content="&lt;hr /&gt;&lt;p&gt;这次美团资格赛，被leetcode惯坏了的我起初很不习惯没有错误样例，总是百思不得其解自己错在哪了，而手动构造的样例也不够大，无法测各种边界情况。在线下测试时，能想到的样例都想到了，可是提交上去还是不能AC，于是开始一场又一场的狗血调试过程。&lt;/p&gt;">
+
+  <!-- Standard Stuff -->
+  <link rel="canonical" href="http://localhost:4000/%E7%BE%8E%E5%9B%A2%E8%B5%84%E6%A0%BC%E8%B5%9B%E9%A2%98%E8%A7%A3-6/"/>
+  <link rel="alternate" type="application/rss+xml" title="kevin's blog" href="http://localhost:4000/feed.xml"/>
+
+  <!-- Favicons -->
+  <link rel="shortcut icon" href="/static/image/favicon.jpeg">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-config" content="/assets/browserconfig.xml">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Styles -->
+
+  
+    <style type="text/css">
+      ::selection{background:#1565c0;color:#fff;text-shadow:none}html{font-size:109.375%;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-smoothing:antialiased;text-size-adjust:100%;box-sizing:border-box}@media screen and (min-width:700px){html{font-size:125%}}@media screen and (min-width:1440px){html{font-size:140.625%}}*,:after,:before{margin:0;padding:0;box-sizing:inherit}body{color:#444;font-family:Georgia,Source Sans Pro,sans-serif;font-size:.9rem;line-height:1.5rem}img{display:block;max-width:100%;height:auto;border:0}a:active,a:hover,a:visited{text-decoration:none}strong{font-weight:700}em{font-style:italic}a{background:transparent;color:#1565c0;text-decoration:none;cursor:pointer;word-wrap:break-word}a:active,a:focus,a:hover{outline:0;text-decoration:none}h1,h2,h3,h4,h5,h6,p{margin-bottom:.2rem}h1,h2,h3,h4,h5,h6{color:#000;font-weight:700;vertical-align:middle}h1:not(:first-child),h2:not(:first-child),h3:not(:first-child),h4:not(:first-child),h5:not(:first-child),h6:not(:first-child){margin-top:2.4rem}h1{font-size:2rem;line-height:3.2rem}h2{font-size:1.5rem;line-height:2.4rem}h3{font-size:1.17rem}h4{font-size:1rem}h5{font-size:.707rem}h6{font-size:.5rem}ol,ul{margin:0 0 1.6rem 1.6rem}ol ol,ol ul,ul ol,ul ul{margin:0 1.6rem}hr{display:block;height:1.6rem;border:0;box-shadow:inset 0 1px 0 #eee}blockquote{margin-bottom:1.6rem;padding:1.6rem;border-left:4px solid #e6e6e6;background:#f7f7f7}blockquote p{margin:0}.col{max-width:calc(700px + 1.6rem);margin:0 auto;padding:0 .8rem}@media screen and (min-width:1440px){.col{max-width:calc(800px + 1.6rem)}}.header{display:flex;flex-wrap:wrap;justify-content:space-around;margin-bottom:2rem;box-shadow:0 1px 0 0 #eee}@media screen and (min-width:734px){.header{font-size:.75rem}}.header__logo{margin-bottom:0;font-size:1rem;font-weight:400;line-height:1.6rem}.header__logo img{display:initial;width:30px;height:30px;vertical-align:middle;border-radius:15px;opacity:1}.header__logo img:hover{opacity:.5;transition:all .5s ease-in}.header__logo a{color:#999;text-transform:uppercase}@media screen and (min-width:734px){.header__logo{font-size:.75rem}}.header__nav{display:flex;flex-wrap:wrap}.header__nav a{color:#444}.header__nav a:hover{color:#999;transition:all .5s ease-in}.header__link{padding:.8rem;color:#444;text-decoration:none;border-bottom:2px solid transparent;padding-bottom:1px}.header__link:hover{transition:all .5s ease-in;border-color:hsla(34,5%,70%,.7)}.header__link--logo{padding:.8rem;display:block}.header__link--logo:focus,.header__link--logo:hover{color:#444;transition:all .5s ease-in}.footer{margin-top:.5rem;padding:1.6rem 0;box-shadow:inset 0 1px 0 #eee}.footer .col{font-size:13px;text-align:center}.subscribe{color:#999;transition:all .25s ease-in}.subscribe:hover{color:#444;text-decoration:none}.blocks{display:flex;align-items:center;margin-bottom:.1rem}.blocks--space{justify-content:space-between}.block__item--mr{margin-right:.8rem}.blocks__item a{text-decoration:none;color:#999;border:3px solid rgba(0,0,0,.1);border-radius:20px;padding:1px 15px;font-family:Georgia,Microsoft YaHei,sans-serif}.blocks__item a:hover{color:#444;border-color:#999;transition:all .5s ease-in}.blocks__item .btn{box-shadow:inset 0 0 0 0 #1565c0}.article{margin-bottom:3rem;animation:itemshow .9s linear}.article__title{margin-bottom:.8rem}.article__title--single,.article__title a{font-family:Georgia,Microsoft YaHei,sans-serif}.article__title a{color:#444;transition:all .25s ease-in}.article__title a:hover{color:#999;text-decoration:none}.article__date{display:block;margin-bottom:.8rem;font-size:.7501rem}.cover{margin-bottom:.5rem}.cover img{width:100%}.article__more{color:#999;text-decoration:none}.article__more:hover{transition:all .5s ease-in;color:#444;text-decoration:none}.post-tags{text-align:right;text-decoration:none;font:italic 700 15px/30px Georgia,serif}.post-tags a{color:#999}.post-tags a:hover{color:#444;text-decoration:none}# changed .PageNavigation{font-size:14px;display:block;width:100%;overflow:hidden}.PageNavigation a{display:block;width:50%;float:left;margin:1em 0}.PageNavigation .next{text-align:right}@-webkit-keyframes "itemshow"{0%{top:-60px;opacity:0}33%{top:-40px;opacity:.2}66%{top:-20px;opacity:.6}to{top:0;opacity:1}}@keyframes "itemshow"{0%{top:-60px;opacity:0}33%{top:-40px;opacity:.2}66%{top:-20px;opacity:.6}to{top:0;opacity:1}}.arch-item{margin-bottom:10px;animation:itemshow .9s linear}.arch-title{color:#444;font-size:20px;font-family:Georgia,Hiragino Sans GB,Microsoft YaHei,sans-serif;font-weight:700;padding-right:10px}.arch-title:hover{color:#999;transition:all .25s ease-in}time{font-size:15px;font-family:Optima,Helvetica Neue,sans-serif}.arch-desc,time{color:#999}code,pre{background:#f7f7f7;font-family:Source Code Pro,monospace;font-size:.7rem;overflow-x:auto;vertical-align:top;line-height:1rem}.highlight{margin-bottom:1.6rem;padding:.8rem;background:#f7f7f7;box-shadow:inset 0 0 0 1px #eee}.highlight .c{color:#998}.highlight .err{background-color:#e3d2d2;color:#a61717}.highlight .k,.highlight .o{font-weight:400}.highlight .cm{color:#998}.highlight .cp{color:#999;font-weight:400}.highlight .c1{color:#998}.highlight .cs{color:#999;font-weight:400}.highlight .gd{background-color:#fdd;color:#000}.highlight .gd .x{background-color:#faa;color:#000}.highlight .gr{color:#a00}.highlight .gh{color:#999}.highlight .gi{background-color:#dfd;color:#000}.highlight .gi .x{background-color:#afa;color:#000}.highlight .go{color:#888}.highlight .gp{color:#555}.highlight .gs{font-weight:400}.highlight .gu{color:#aaa}.highlight .gt{color:#a00}.highlight .kc,.highlight .kd,.highlight .kp,.highlight .kr,.highlight .kt{font-weight:400}.highlight .kt{color:#458}.highlight .m{color:#099}.highlight .s{color:#d14}.highlight .na{color:teal}.highlight .nb{color:#0086b3}.highlight .nc{color:#458;font-weight:400}.highlight .no{color:teal}.highlight .ni{color:purple}.highlight .ne,.highlight .nf{color:#900;font-weight:400}.highlight .nn{color:#555}.highlight .nt{color:navy}.highlight .nv{color:teal}.highlight .ow{font-weight:400}.highlight .w{color:#bbb}.highlight .mf,.highlight .mh,.highlight .mi,.highlight .mo{color:#099}.highlight .s2,.highlight .sb,.highlight .sc,.highlight .sd,.highlight .se,.highlight .sh,.highlight .si,.highlight .sx{color:#d14}.highlight .sr{color:#009926}.highlight .s1{color:#d14}.highlight .ss{color:#990073}.highlight .bp{color:#999}.highlight .vc,.highlight .vg,.highlight .vi{color:teal}.highlight .il{color:#099}#backToTop{width:50px;height:50px;position:fixed;background:url(/static/image/backToTop/backToTop.png);display:none}
+    </style>
+  
+
+    <!-- mathjax -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$']]}});
+      processEscapes: true
+    </script>
+    <script type="text/javascript" async
+      src="https://cdn.mathjax.org/mathjax/2.7-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+
+</head>
+
+<body>
+
+  <header class="header">
+
+    
+      <div class="header__logo">
+        <a href="/" class="header__link--logo">
+        <!-- <div class="spinner"></div> -->
+        <img src="/static/image/avatar.JPG"></a>
+      </div>
+    
+
+    <nav class="header__nav" role="navigation">
+      <a href="/archives/tag" class="header__link">Tags</a>
+      <a href="/archives/year" class="header__link">Years</a>
+      <a href="/archives/month" class="header__link">Months</a>
+      <a href="/archives/" class="header__link">All Posts</a>
+      <!-- <a href="http://twitter.com/" class="header__link" target="_blank">Twitter</a> -->
+      <a href="http://github.com/b-liu14" class="header__link" target="_blank">Github</a>
+      <!-- <a href="http://facebook.com/" class="header__link" target="_blank">Facebook</a> -->
+      <a href="/about/" class="header__link">About Me</a>
+    </nav>
+  </header>
+
+  <main class="col">
+
+
+<article class="article">
+  <h2 class="article__title article__title--single">美团资格赛题解：6</h2>
+  <time class="article__date" datetime="2017-06-17"> 17:30 Jun.17-2017</time>
+  
+  <hr />
+
+<p>这次美团资格赛，被leetcode惯坏了的我起初很不习惯没有错误样例，总是百思不得其解自己错在哪了，而手动构造的样例也不够大，无法测各种边界情况。在线下测试时，能想到的样例都想到了，可是提交上去还是不能AC，于是开始一场又一场的狗血调试过程。</p>
+
+<h3 id="第六题">第六题</h3>
+
+<h4 id="题目描述">题目描述</h4>
+
+<p>围棋是起源于中国有悠久历史的策略性棋类游戏。它的规则如下：</p>
+<ol>
+  <li>棋盘19*19。</li>
+  <li>棋子分黑白两色，双方各执一色。</li>
+  <li>下法：每次黑或白着一子于棋盘的空点上。棋子下定后，不再向其他点移动。</li>
+  <li>棋子的气：一个棋子在棋盘上，与它相邻的空点是这个棋子的“气”（这里相邻是指两个点有公共边）。 相邻的点上如果有同色棋子存在，这些棋子就相互连接成一个不可分割的整体，气合并计算。
+相邻的点上如果有异色棋子存在，此处的气便不存在。
+如果棋子所在的连通块失去所有的气，即为无气之子，不能在棋盘上存在。</li>
+  <li>提子：把无气之子清理出棋盘的手段叫“提子”。提子有二种：
+    <ul>
+      <li>着子后，对方棋子无气，应立即提取对方无气之子。</li>
+      <li>着子后，双方棋子都呈无气状态，应立即提取对方无气之子。</li>
+    </ul>
+  </li>
+  <li>禁着点：棋盘上的任何一空点，如果某方在此下子，会使该子立即呈无气状态，同时又不能提取对方的棋子，这个点叫做“禁着点”，该方不能在此下子。</li>
+  <li>禁止全局同形：无论哪一方，在成功进行了着子、提子操作后，棋盘局面不能和任何之前的局面相同。</li>
+</ol>
+
+<p>你要做的是：输入一些操作，从空棋盘开始模拟这些操作。
+对于每一步，若结果不正确，则输出对应的miss并且忽略这个操作，并在最后输出棋盘的局面。</p>
+
+<h4 id="输入描述">输入描述:</h4>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>第一行，测试数据组数≤100
+第二行，每组测试数据，执行的步数 n ≤ 2000
+然后 n 行
+B x y
+W x y
+(1 ≤ x ≤ 19,1 ≤ y ≤ 19)
+其中，二元组 x,y 表示围棋棋盘上第 x 行第 y 列对应的点。
+输入数据保证是黑白轮流下的。
+</code></pre>
+</div>
+
+<h4 id="输出描述">输出描述:</h4>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>多行
+对于miss的情况，输出是哪一种错误格式，其中：
+miss 1 表示下的位置已经有棋了
+miss 2 表示违反规则6
+miss 3 表示违反规则7
+对于正常的操作，不用输出。
+最后输出最终盘面。“B表示黑子，W表示白子，如果是空点的话，就输出'.'字符。”
+</code></pre>
+</div>
+
+<h4 id="输入例子">输入例子:</h4>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>1
+12
+B 1 3
+W 1 2
+B 2 4
+W 2 1
+B 1 1
+W 2 3
+B 3 3
+W 3 2
+B 1 1
+W 2 3
+B 2 2
+W 2 3
+</code></pre>
+</div>
+
+<h4 id="输出例子">输出例子:</h4>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>miss 2
+miss 2
+miss 1
+miss 3
+.WB................
+WB.B...............
+.WB................
+...................
+...................
+...................
+...................
+...................
+...................
+...................
+...................
+...................
+...................
+...................
+...................
+...................
+...................
+...................
+...................
+</code></pre>
+</div>
+
+<h4 id="思路">思路：</h4>
+
+<p>第六题是一个模拟题，首先我采用了增量式的做法，记录下每一个连通分量的气，在下子的时候只需要更新落点周围的连通分量的气即可，核心代码如下：</p>
+
+<div class="language-c++ highlighter-rouge"><pre class="highlight"><code><span class="c1">// go_incre.cpp
+</span><span class="k">const</span> <span class="kt">int</span> <span class="n">Edge</span> <span class="o">=</span> <span class="mi">19</span><span class="p">;</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">B</span><span class="p">(</span><span class="n">Edge</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Edge</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">P</span><span class="p">(</span><span class="n">Edge</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Edge</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">E</span><span class="p">(</span><span class="n">Edge</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Edge</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="n">dx</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">},</span> <span class="n">dy</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">};</span>
+<span class="n">set</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">tab</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">initBoard</span><span class="p">()</span> <span class="p">{...}</span>
+
+<span class="kt">int</span> <span class="nf">getParent</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">]</span> <span class="o">==</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">+</span> <span class="n">y</span><span class="p">)</span> <span class="k">return</span> <span class="n">P</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">];</span>
+    <span class="k">return</span> <span class="n">P</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="n">getParent</span><span class="p">(</span><span class="n">P</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">]</span> <span class="o">/</span> <span class="mi">100</span><span class="p">,</span> <span class="n">P</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">]</span> <span class="o">%</span> <span class="mi">100</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">takePawn</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">isBlack</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">queue</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">q</span><span class="p">;</span>
+    <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">x</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">+</span> <span class="n">y</span><span class="p">);</span>
+    <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">q</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">px</span> <span class="o">=</span> <span class="n">q</span><span class="p">.</span><span class="n">front</span><span class="p">()</span> <span class="o">/</span> <span class="mi">100</span><span class="p">,</span> <span class="n">py</span> <span class="o">=</span> <span class="n">q</span><span class="p">.</span><span class="n">front</span><span class="p">()</span> <span class="o">%</span> <span class="mi">100</span><span class="p">;</span> <span class="n">q</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+        <span class="n">B</span><span class="p">[</span><span class="n">px</span><span class="p">][</span><span class="n">py</span><span class="p">]</span> <span class="o">=</span> <span class="n">P</span><span class="p">[</span><span class="n">px</span><span class="p">][</span><span class="n">py</span><span class="p">]</span> <span class="o">=</span> <span class="n">E</span><span class="p">[</span><span class="n">px</span><span class="p">][</span><span class="n">py</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kt">int</span> <span class="n">nx</span> <span class="o">=</span> <span class="n">px</span> <span class="o">+</span> <span class="n">dx</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">ny</span> <span class="o">=</span> <span class="n">py</span> <span class="o">+</span> <span class="n">dy</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+            <span class="k">if</span><span class="p">((</span><span class="n">isBlack</span> <span class="o">&amp;&amp;</span> <span class="n">B</span><span class="p">[</span><span class="n">nx</span><span class="p">][</span><span class="n">ny</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="o">!</span><span class="n">isBlack</span> <span class="o">&amp;&amp;</span> <span class="n">B</span><span class="p">[</span><span class="n">nx</span><span class="p">][</span><span class="n">ny</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">))</span> <span class="p">{</span>
+                <span class="kt">int</span> <span class="n">p</span> <span class="o">=</span> <span class="n">getParent</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span> <span class="n">ny</span><span class="p">);</span>
+                <span class="n">E</span><span class="p">[</span><span class="n">p</span> <span class="o">/</span> <span class="mi">100</span><span class="p">][</span><span class="n">p</span> <span class="o">%</span> <span class="mi">100</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">else</span> <span class="k">if</span><span class="p">((</span><span class="n">isBlack</span> <span class="o">&amp;&amp;</span> <span class="n">B</span><span class="p">[</span><span class="n">nx</span><span class="p">][</span><span class="n">ny</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="o">!</span><span class="n">isBlack</span> <span class="o">&amp;&amp;</span> <span class="n">B</span><span class="p">[</span><span class="n">nx</span><span class="p">][</span><span class="n">ny</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">))</span> <span class="p">{</span>
+                <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">nx</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">+</span> <span class="n">ny</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">putPawn</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">isBlack</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">B</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">])</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"miss 1</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">temB</span> <span class="o">=</span> <span class="n">B</span><span class="p">,</span> <span class="n">temP</span> <span class="o">=</span> <span class="n">P</span><span class="p">,</span> <span class="n">temE</span> <span class="o">=</span> <span class="n">E</span><span class="p">;</span>
+
+    <span class="n">B</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="n">isBlack</span> <span class="o">?</span> <span class="mi">1</span> <span class="o">:</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="n">P</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">+</span> <span class="n">y</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">check</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+    <span class="kt">int</span> <span class="n">errorNum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">nx</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">dx</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">ny</span> <span class="o">=</span> <span class="n">y</span> <span class="o">+</span> <span class="n">dy</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+        <span class="kt">int</span> <span class="o">&amp;</span><span class="n">p</span> <span class="o">=</span> <span class="n">check</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">B</span><span class="p">[</span><span class="n">nx</span><span class="p">][</span><span class="n">ny</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="n">E</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+        <span class="k">else</span> <span class="k">if</span><span class="p">((</span><span class="n">isBlack</span> <span class="o">&amp;&amp;</span> <span class="n">B</span><span class="p">[</span><span class="n">nx</span><span class="p">][</span><span class="n">ny</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="o">!</span><span class="n">isBlack</span> <span class="o">&amp;&amp;</span> <span class="n">B</span><span class="p">[</span><span class="n">nx</span><span class="p">][</span><span class="n">ny</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">))</span> <span class="p">{</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="n">getParent</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span> <span class="n">ny</span><span class="p">);</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">x</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">+</span> <span class="n">y</span> <span class="o">==</span> <span class="n">p</span><span class="p">)</span> <span class="n">E</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">]</span><span class="o">--</span><span class="p">;</span>
+            <span class="k">else</span> <span class="p">{</span>
+                <span class="n">E</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">]</span> <span class="o">+=</span> <span class="n">E</span><span class="p">[</span><span class="n">p</span> <span class="o">/</span> <span class="mi">100</span><span class="p">][</span><span class="n">p</span> <span class="o">%</span> <span class="mi">100</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+                <span class="n">P</span><span class="p">[</span><span class="n">p</span> <span class="o">/</span> <span class="mi">100</span><span class="p">][</span><span class="n">p</span> <span class="o">%</span> <span class="mi">100</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">+</span> <span class="n">y</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="k">if</span><span class="p">((</span><span class="n">isBlack</span> <span class="o">&amp;&amp;</span> <span class="n">B</span><span class="p">[</span><span class="n">nx</span><span class="p">][</span><span class="n">ny</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="o">!</span><span class="n">isBlack</span> <span class="o">&amp;&amp;</span> <span class="n">B</span><span class="p">[</span><span class="n">nx</span><span class="p">][</span><span class="n">ny</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">))</span> <span class="p">{</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="n">getParent</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span> <span class="n">ny</span><span class="p">);</span>
+            <span class="n">E</span><span class="p">[</span><span class="n">p</span> <span class="o">/</span> <span class="mi">100</span><span class="p">][</span><span class="n">p</span> <span class="o">%</span> <span class="mi">100</span><span class="p">]</span><span class="o">--</span><span class="p">;</span>
+            <span class="n">errorNum</span><span class="o">++</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">errorNum</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+    <span class="n">check</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">P</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">];</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span><span class="o">&amp;</span> <span class="n">p</span> <span class="o">=</span> <span class="n">check</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">E</span><span class="p">[</span><span class="n">p</span> <span class="o">/</span> <span class="mi">100</span><span class="p">][</span><span class="n">p</span> <span class="o">%</span> <span class="mi">100</span><span class="p">])</span> <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="mi">4</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">errorNum</span> <span class="o">==</span> <span class="mi">4</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="n">printf</span><span class="p">(</span><span class="s">"miss 2</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+                    <span class="n">B</span> <span class="o">=</span> <span class="n">temB</span><span class="p">,</span> <span class="n">P</span> <span class="o">=</span> <span class="n">temP</span><span class="p">,</span> <span class="n">E</span> <span class="o">=</span> <span class="n">temE</span><span class="p">;</span>
+                    <span class="k">return</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="k">else</span> <span class="n">takePawn</span><span class="p">(</span><span class="n">p</span> <span class="o">/</span> <span class="mi">100</span><span class="p">,</span> <span class="n">p</span> <span class="o">%</span> <span class="mi">100</span><span class="p">,</span> <span class="n">isBlack</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="k">else</span> <span class="n">takePawn</span><span class="p">(</span><span class="n">p</span> <span class="o">/</span> <span class="mi">100</span><span class="p">,</span> <span class="n">p</span> <span class="o">%</span> <span class="mi">100</span><span class="p">,</span> <span class="o">!</span><span class="n">isBlack</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="n">tab</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">B</span><span class="p">)</span> <span class="o">!=</span> <span class="n">tab</span><span class="p">.</span><span class="n">end</span><span class="p">())</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"miss 3</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="n">temB</span><span class="p">,</span> <span class="n">P</span> <span class="o">=</span> <span class="n">temP</span><span class="p">,</span> <span class="n">E</span> <span class="o">=</span> <span class="n">temE</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="n">tab</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">B</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">printBoard</span><span class="p">()</span> <span class="p">{...}</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{...}</span>
+</code></pre>
+</div>
+
+<p>由于根据落子位置来更新落子周围的联通分量的气的逻辑有点复杂，写出来上诉版本后自己也很虚，提交上去果然错了，自己试了很久也没找到问题，于是决定写一个暴力版本来和该版本对拍，根据对拍结果来查找问题，暴力版本如下，模拟每一步落子，使用深搜查看是否有子可以被提掉，存下所有中间状态以查看是否出现局面重复（事实上，刚开始实现的暴力版本也有问题，后面通过对拍发现了暴力版本的问题，提交后AC，于是就没有再管增量版本）：</p>
+
+<div class="language-c++ highlighter-rouge"><pre class="highlight"><code><span class="c1">// go_force.cpp
+</span><span class="k">const</span> <span class="kt">int</span> <span class="n">Edge</span> <span class="o">=</span> <span class="mi">19</span><span class="p">;</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">B</span><span class="p">(</span><span class="n">Edge</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Edge</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
+<span class="n">set</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">tab</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="n">dx</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">},</span> <span class="n">dy</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">};</span>
+
+<span class="kt">void</span> <span class="nf">initBoard</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">Edge</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">Edge</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+            <span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">tab</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">printBoard</span><span class="p">()</span> <span class="p">{...}</span>
+<span class="kt">bool</span> <span class="nf">dfs</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span> <span class="o">&gt;&amp;</span> <span class="n">vis</span><span class="p">,</span> <span class="k">const</span> <span class="kt">int</span><span class="o">&amp;</span> <span class="n">color</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">nx</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">dx</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">ny</span> <span class="o">=</span> <span class="n">y</span> <span class="o">+</span> <span class="n">dy</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">nx</span> <span class="o">&gt;=</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">nx</span> <span class="o">&lt;=</span> <span class="n">Edge</span> <span class="o">&amp;&amp;</span> <span class="n">ny</span> <span class="o">&gt;=</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">ny</span> <span class="o">&lt;=</span> <span class="n">Edge</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">vis</span><span class="p">[</span><span class="n">nx</span><span class="p">][</span><span class="n">ny</span><span class="p">])</span> <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">B</span><span class="p">[</span><span class="n">nx</span><span class="p">][</span><span class="n">ny</span><span class="p">]</span> <span class="o">==</span> <span class="n">color</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">vis</span><span class="p">[</span><span class="n">nx</span><span class="p">][</span><span class="n">ny</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+                <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">dfs</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span> <span class="n">ny</span><span class="p">,</span> <span class="n">vis</span><span class="p">,</span> <span class="n">color</span><span class="p">))</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">B</span><span class="p">[</span><span class="n">nx</span><span class="p">][</span><span class="n">ny</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">takePawn</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">,</span> <span class="k">const</span> <span class="kt">int</span><span class="o">&amp;</span> <span class="n">color</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">queue</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">q</span><span class="p">;</span>
+    <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">x</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">+</span> <span class="n">y</span><span class="p">);</span>
+    <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">q</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="p">{</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">q</span><span class="p">.</span><span class="n">front</span><span class="p">()</span> <span class="o">/</span> <span class="mi">100</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">q</span><span class="p">.</span><span class="n">front</span><span class="p">()</span> <span class="o">%</span> <span class="mi">100</span><span class="p">;</span> <span class="n">q</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+        <span class="n">B</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kt">int</span> <span class="n">nx</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">dx</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">ny</span> <span class="o">=</span> <span class="n">y</span> <span class="o">+</span> <span class="n">dy</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">nx</span> <span class="o">&gt;=</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">nx</span> <span class="o">&lt;=</span> <span class="n">Edge</span> <span class="o">&amp;&amp;</span> <span class="n">ny</span> <span class="o">&gt;=</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">ny</span> <span class="o">&lt;=</span> <span class="n">Edge</span> <span class="o">&amp;&amp;</span> <span class="n">B</span><span class="p">[</span><span class="n">nx</span><span class="p">][</span><span class="n">ny</span><span class="p">]</span> <span class="o">==</span> <span class="n">color</span><span class="p">)</span>
+                <span class="n">q</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">nx</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">+</span> <span class="n">ny</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">putPawn</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">isBlack</span><span class="p">)</span> <span class="p">{</span>
+  	<span class="c1">// 已经有子
+</span>    <span class="k">if</span><span class="p">(</span><span class="n">B</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">])</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"miss 1</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">temB</span> <span class="o">=</span> <span class="n">B</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">color</span> <span class="o">=</span> <span class="n">isBlack</span> <span class="o">?</span> <span class="mi">1</span> <span class="o">:</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="kt">bool</span> <span class="n">isTaken</span> <span class="o">=</span> <span class="nb">false</span><span class="p">,</span> <span class="n">isEmpty</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="n">B</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="n">color</span><span class="p">;</span>
+  	<span class="c1">// 是否可以提掉周围的子
+</span>    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">nx</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">dx</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">ny</span> <span class="o">=</span> <span class="n">y</span> <span class="o">+</span> <span class="n">dy</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">nx</span> <span class="o">&gt;=</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">nx</span> <span class="o">&lt;=</span> <span class="n">Edge</span> <span class="o">&amp;&amp;</span> <span class="n">ny</span> <span class="o">&gt;=</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">ny</span> <span class="o">&lt;=</span> <span class="n">Edge</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">vis</span><span class="p">(</span><span class="n">Edge</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Edge</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">false</span><span class="p">));</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">B</span><span class="p">[</span><span class="n">nx</span><span class="p">][</span><span class="n">ny</span><span class="p">]</span> <span class="o">==</span> <span class="mi">3</span> <span class="o">-</span> <span class="n">color</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">vis</span><span class="p">[</span><span class="n">nx</span><span class="p">][</span><span class="n">ny</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+                <span class="kt">bool</span> <span class="n">temT</span> <span class="o">=</span> <span class="n">dfs</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span> <span class="n">ny</span><span class="p">,</span> <span class="n">vis</span><span class="p">,</span> <span class="mi">3</span> <span class="o">-</span> <span class="n">color</span><span class="p">);</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">temT</span><span class="p">)</span> <span class="n">takePawn</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span> <span class="n">ny</span><span class="p">,</span> <span class="mi">3</span> <span class="o">-</span> <span class="n">color</span><span class="p">);</span>
+                <span class="n">isTaken</span> <span class="o">=</span> <span class="n">isTaken</span> <span class="o">||</span> <span class="n">temT</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">B</span><span class="p">[</span><span class="n">nx</span><span class="p">][</span><span class="n">ny</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="n">isEmpty</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+  	<span class="c1">// 不可落子
+</span>    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">isTaken</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">isEmpty</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">vis</span><span class="p">(</span><span class="n">Edge</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Edge</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">false</span><span class="p">));</span>
+        <span class="n">isTaken</span> <span class="o">=</span> <span class="n">dfs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">vis</span><span class="p">,</span> <span class="n">color</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">isTaken</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">"miss 2</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+            <span class="n">B</span> <span class="o">=</span> <span class="n">temB</span><span class="p">;</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+  	<span class="c1">// 局面重复？
+</span>    <span class="k">if</span><span class="p">(</span><span class="n">tab</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">B</span><span class="p">)</span> <span class="o">!=</span> <span class="n">tab</span><span class="p">.</span><span class="n">end</span><span class="p">())</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"miss 3</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="n">temB</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="n">tab</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">B</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{...}</span>
+</code></pre>
+</div>
+
+<p>数据生成代码如下：</p>
+
+<div class="language-c++ highlighter-rouge"><pre class="highlight"><code><span class="c1">// data_generator.cpp
+</span><span class="k">const</span> <span class="kt">int</span> <span class="n">Edge</span> <span class="o">=</span> <span class="mi">19</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">get_rand</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="n">rand</span><span class="p">()</span> <span class="o">%</span> <span class="n">Edge</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">srand</span><span class="p">(</span><span class="kt">unsigned</span><span class="p">(</span><span class="n">time</span><span class="p">(</span><span class="nb">NULL</span><span class="p">)));</span>
+    <span class="kt">int</span> <span class="n">T</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">T</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">T</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">N</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kt">char</span> <span class="n">color</span> <span class="o">=</span> <span class="n">j</span> <span class="o">&amp;</span> <span class="mi">1</span> <span class="o">?</span> <span class="sc">'W'</span> <span class="o">:</span> <span class="sc">'B'</span><span class="p">;</span>
+            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">color</span> <span class="o">&lt;&lt;</span> <span class="sc">' '</span> <span class="o">&lt;&lt;</span> <span class="n">get_rand</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="sc">' '</span> <span class="o">&lt;&lt;</span> <span class="n">get_rand</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>对拍脚本如下：</p>
+
+<pre><code class="language-Bash">#!/bin/bash
+
+g++ go_incre.cpp -std=c++11 -o go_incre
+g++ go_force.cpp -std=c++11 -o go_force
+g++ data_generator.cpp -std=c++11 -o data_generator
+while true; do
+    ./data_generator &gt; data.txt
+    ./go_incre &lt; data.txt &gt; go_incre.out
+    ./go_force &lt; data.txt &gt; go_force.out
+    diff go_incre.out go_force.out
+    if [ $? -ne 0 ] ; then break; fi
+done
+</code></pre>
+
+<p>经过对拍，我们确实发现了两个版本的结果不一致，但是由于棋局太复杂，下棋步数太多，我们也没办法手动模拟去查看那个版本有错。</p>
+
+<p>于是我们试着减少测试样例中下棋的步数N，可是当N很小的时候，两个版本的结果总是一致的。</p>
+
+<p>最后，我们试着减小棋盘的大小为5，这样的话模拟器来会简单的多，经过比较长时间的对拍，终于有了一组测试样例不一致了，遗憾的是，在该样例里我们发现是暴力版本错了，错误原因是记录某一位置是否已经被访问托的变量vis在搜完一遍后没有清空，导致从其他位置开始搜索时有了错误的信息，导致产生了错误的结果。改正后提交，居然AC了。天色已晚，暂时就先不管增量版本，洗洗睡吧。</p>
+
+<h3 id="总结">总结</h3>
+
+<p>这次比赛，还是能看出来自己问题很多，不过也积累了一些调试经验：</p>
+<ul>
+  <li>问题规模比较大无法手动模拟时，尝试缩小问题规模，如第六题将棋盘大小设置为5。</li>
+  <li>极端情况可以通过对拍来找出问题，但是需要小心的时一定要采用两种不同的思路来写对拍程序，否则无法保证对拍一致后的程序的正确性。</li>
+  <li>当对该问题只有一个思路，无法找出暴力版本来进行对拍时，可以尝试将问题稍微变一下条件，如第三题的调试过程中我将优惠券的种类数目设置为1，使得修改后的问题存在一个很显然的解法，通过该解法与正常版本的程序进行对拍找到了bug。</li>
+</ul>
+
+<p>总之，自己还是太嫩了，推研考试当前，还是少用leetcode来刷题了。不管怎样，还是得多努力呀。</p>
+
+  <span class="post-tags">
+      🏷 &nbsp;&nbsp;
+      
+  </span>
+
+    <div class="PageNavigation">
+      
+        <a class="prev" href="/%E7%BE%8E%E5%9B%A2%E8%B5%84%E6%A0%BC%E8%B5%9B%E9%A2%98%E8%A7%A3-5/">&laquo; 美团资格赛题解：5</a>
+      
+      
+    </div>
+  
+</article>
+
+<!-- Comment -->
+
+<hr>
+<div id="container"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  // id: '页面 ID', // 可选。默认为 location.href
+  owner: 'b-liu14',
+  repo: 'b-liu14.github.io',
+  oauth: {
+    client_id: '330c080c67573c519f91',
+    client_secret: '3244461d56607775294995b638885104a7df5b35',
+  },
+})
+gitment.render('container')
+</script>
+
+
+
+<!-- my change -->
+<script type="text/javascript" src="/static/js/backToTop.js"></script>
+<script>
+	backToTopInit({RightBottom: true});
+</script>
+
+<footer class="footer">
+	<div class="col">
+		© 2017-2019 kevin's blog | <a href="/feed.xml" class="subscribe">RSS</a>
+	</div>
+</footer>
+
+
+<div style="display:none">
+<script src="https://s4.cnzz.com/z_stat.php?id=1261710020&web_id=1261710020" language="JavaScript"></script>
+</div>
+
+</body>
+</html>

@@ -7,19 +7,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="author" content="songroger">
 
-  <title>kevin's blog</title>
+  <title>美团资格赛题解：1-2</title>
 
-  <meta name="description" content="">
+  <meta name="description" content="&lt;hr /&gt;&lt;p&gt;由于下学期要参加学校的推研考试，需要考算法题，又正好看到美团举办了一个算法竞赛，抱着练手的态度参加了这次比赛，虽然肯定没办法与众多ACM大神相比，但好在对我来说成绩无所谓了，能对下学期的推研机考有帮助就好。&lt;/p&gt;&lt;p&gt;资格赛总共有六道题，前两道题...">
 
   <!-- Open graph data -->
   <meta property="og:site_name" content="kevin's blog">
-  <meta property="og:title" content="kevin's blog">
-  <meta property="og:url" content="http://localhost:4000/archives/year/2017/">
-  <meta property="og:type" content="website">
-  <meta property="og:description" content="">
+  <meta property="og:title" content="美团资格赛题解：1-2">
+  <meta property="og:url" content="http://localhost:4000/%E7%BE%8E%E5%9B%A2%E8%B5%84%E6%A0%BC%E8%B5%9B%E9%A2%98%E8%A7%A3-1-2/">
+  <meta property="og:type" content="article">
+  <meta property="og:description" content="&lt;hr /&gt;&lt;p&gt;由于下学期要参加学校的推研考试，需要考算法题，又正好看到美团举办了一个算法竞赛，抱着练手的态度参加了这次比赛，虽然肯定没办法与众多ACM大神相比，但好在对我来说成绩无所谓了，能对下学期的推研机考有帮助就好。&lt;/p&gt;&lt;p&gt;资格赛总共有六道题，前两道题...">
 
   <!-- Standard Stuff -->
-  <link rel="canonical" href="http://localhost:4000/archives/year/2017/"/>
+  <link rel="canonical" href="http://localhost:4000/%E7%BE%8E%E5%9B%A2%E8%B5%84%E6%A0%BC%E8%B5%9B%E9%A2%98%E8%A7%A3-1-2/"/>
   <link rel="alternate" type="application/rss+xml" title="kevin's blog" href="http://localhost:4000/feed.xml"/>
 
   <!-- Favicons -->
@@ -74,56 +74,174 @@
   <main class="col">
 
 
-<h4>2017</h4>
+<article class="article">
+  <h2 class="article__title article__title--single">美团资格赛题解：1-2</h2>
+  <time class="article__date" datetime="2017-06-17"> 10:51 Jun.17-2017</time>
+  
+  <hr />
 
-<ul class="posts">
+<p>由于下学期要参加学校的推研考试，需要考算法题，又正好看到美团举办了一个算法竞赛，抱着练手的态度参加了这次比赛，虽然肯定没办法与众多ACM大神相比，但好在对我来说成绩无所谓了，能对下学期的推研机考有帮助就好。</p>
 
-  <li>
-    <span class="post-date">Jun 17, 2017</span>
-    <a class="post-link" href="/%E7%BE%8E%E5%9B%A2%E8%B5%84%E6%A0%BC%E8%B5%9B%E9%A2%98%E8%A7%A3-6/">美团资格赛题解：6</a>
+<p>资格赛总共有六道题，前两道题很简单，3、4、5、6对我来说比较难一些，所以这篇博客就先介绍1，2题吧，剩下的题目会在后面的博客中讨论。</p>
+
+<p>这几道题的题解我都放在了我的<a href="https://github.com/b-liu14/algoritm-solutions/tree/master/nowcoder">github</a>上面，有什么问题请务必联系我。</p>
+
+<!-- toc orderedList:0 depthFrom:1 depthTo:6 -->
+
+<ul>
+  <li><a href="#题目1">题目1</a>
+    <ul>
+      <li><a href="#题目描述">题目描述</a></li>
+      <li><a href="#输入描述">输入描述:</a></li>
+      <li><a href="#输出描述">输出描述:</a></li>
+      <li><a href="#输入例子">输入例子:</a></li>
+      <li><a href="#输出例子">输出例子:</a></li>
+      <li><a href="#思路">思路:</a></li>
+    </ul>
   </li>
-
-  <li>
-    <span class="post-date">Jun 17, 2017</span>
-    <a class="post-link" href="/%E7%BE%8E%E5%9B%A2%E8%B5%84%E6%A0%BC%E8%B5%9B%E9%A2%98%E8%A7%A3-5/">美团资格赛题解：5</a>
+  <li><a href="#题目2">题目2</a>
+    <ul>
+      <li><a href="#题目描述-1">题目描述</a></li>
+      <li><a href="#输入描述-1">输入描述:</a></li>
+      <li><a href="#输出描述-1">输出描述:</a></li>
+      <li><a href="#输入例子-1">输入例子:</a></li>
+      <li><a href="#输出例子-1">输出例子:</a></li>
+      <li><a href="#思路-1">思路</a></li>
+    </ul>
   </li>
-
-  <li>
-    <span class="post-date">Jun 17, 2017</span>
-    <a class="post-link" href="/%E7%BE%8E%E5%9B%A2%E8%B5%84%E6%A0%BC%E8%B5%9B%E9%A2%98%E8%A7%A3-4/">美团资格赛题解：4</a>
-  </li>
-
-  <li>
-    <span class="post-date">Jun 17, 2017</span>
-    <a class="post-link" href="/%E7%BE%8E%E5%9B%A2%E8%B5%84%E6%A0%BC%E8%B5%9B%E9%A2%98%E8%A7%A3-3/">美团资格赛题解：3</a>
-  </li>
-
-  <li>
-    <span class="post-date">Jun 17, 2017</span>
-    <a class="post-link" href="/%E7%BE%8E%E5%9B%A2%E8%B5%84%E6%A0%BC%E8%B5%9B%E9%A2%98%E8%A7%A3-1-2/">美团资格赛题解：1-2</a>
-  </li>
-
-  <li>
-    <span class="post-date">Jun 7, 2017</span>
-    <a class="post-link" href="/%E5%8D%9A%E5%AE%A2%E6%8D%A2%E5%9F%9F%E5%90%8D%E5%95%A6/">博客换域名啦</a>
-  </li>
-
-  <li>
-    <span class="post-date">May 2, 2017</span>
-    <a class="post-link" href="/%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E4%B8%A4%E6%9D%A1%E7%BA%BF%E6%AE%B5%E6%98%AF%E5%90%A6%E7%9B%B8%E4%BA%A4/">如何判断两条线段是否相交</a>
-  </li>
-
-  <li>
-    <span class="post-date">Apr 21, 2017</span>
-    <a class="post-link" href="/%E8%AE%B0%E4%B8%80%E6%AC%A1%E8%84%91%E6%AE%8B%E7%9A%84mongodb%E8%BF%9E%E6%8E%A5%E7%BB%8F%E5%8E%86/">记一次脑残的mongodb连接经历</a>
-  </li>
-
-  <li>
-    <span class="post-date">Apr 9, 2017</span>
-    <a class="post-link" href="/%E5%BE%AE%E8%BD%AF2017%E5%B9%B4%E9%A2%84%E7%A7%91%E7%94%9F%E8%AE%A1%E5%88%92%E5%9C%A8%E7%BA%BF%E7%BC%96%E7%A8%8B%E7%AC%94%E8%AF%95%E7%AC%AC%E4%BA%8C%E5%9C%BA%E6%80%BB%E7%BB%93/">微软2017年预科生计划在线编程笔试第二场总结</a>
-  </li>
-
 </ul>
+
+<!-- tocstop -->
+
+<h3 id="题目1">题目1</h3>
+
+<div class="language-text highlighter-rouge"><pre class="highlight"><code>时间限制：2秒
+空间限制：32768K
+</code></pre>
+</div>
+
+<h4 id="题目描述">题目描述</h4>
+
+<p>美团外卖的品牌代言人袋鼠先生最近正在进行音乐研究。他有两段音频，每段音频是一个表示音高的序列。现在袋鼠先生想要在第二段音频中找出与第一段音频最相近的部分。
+具体地说，就是在第二段音频中找到一个长度和第一段音频相等且是连续的子序列，使得它们的 difference 最小。两段等长音频的 difference 定义为：$difference = \sum_{i=1}^n(a[i] - b[i])^2$，其中 n 表示序列长度，a[i], b[i]分别表示两段音频的音高。现在袋鼠先生想要知道，difference的最小值是多少？数据保证第一段音频的长度小于等于第二段音频的长度。</p>
+
+<h4 id="输入描述">输入描述:</h4>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>第一行一个整数n(1 ≤ n ≤ 1000)，表示第一段音频的长度。
+第二行n个整数表示第一段音频的音高（0 ≤ 音高 ≤ 1000）。
+第三行一个整数m(1 ≤ n ≤ m ≤ 1000)，表示第二段音频的长度。
+第四行m个整数表示第二段音频的音高（0 ≤ 音高 ≤ 1000）。
+</code></pre>
+</div>
+
+<h4 id="输出描述">输出描述:</h4>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>输出difference的最小值
+</code></pre>
+</div>
+
+<h4 id="输入例子">输入例子:</h4>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>2
+1 2
+4
+3 1 2 4
+</code></pre>
+</div>
+
+<h4 id="输出例子">输出例子:</h4>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>0
+</code></pre>
+</div>
+
+<h4 id="思路">思路:</h4>
+
+<p>由于n和m都小于1000，因此最简单的暴力枚举也不用担心超时：直接遍历第二段音频的起点然后记录下遍历过程中difference的最小值即可，代码见<a href="https://github.com/b-liu14/algoritm-solutions/blob/master/nowcoder/music-study.cpp">github</a>。</p>
+
+<h3 id="题目2">题目2</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>时间限制：1秒
+空间限制：32768K
+</code></pre>
+</div>
+
+<h4 id="题目描述-1">题目描述</h4>
+
+<p>组委会正在为美团点评CodeM大赛的决赛设计新赛制。
+比赛有 n 个人参加（其中 n 为2的幂），每个参赛者根据资格赛和预赛、复赛的成绩，会有不同的积分。比赛采取锦标赛赛制，分轮次进行，设某一轮有 m 个人参加，那么参赛者会被分为 m/2 组，每组恰好 2 人，m/2 组的人分别厮杀。我们假定积分高的人肯定获胜，若积分一样，则随机产生获胜者。获胜者获得参加下一轮的资格，输的人被淘汰。重复这个过程，直至决出冠军。
+现在请问，参赛者小美最多可以活到第几轮（初始为第0轮）？</p>
+
+<h4 id="输入描述-1">输入描述:</h4>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>第一行一个整数 n (1≤n≤ 2^20)，表示参加比赛的总人数。
+接下来 n 个数字（数字范围：-1000000…1000000），表示每个参赛者的积分。
+小美是第一个参赛者。
+</code></pre>
+</div>
+
+<h4 id="输出描述-1">输出描述:</h4>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>小美最多参赛的轮次。
+</code></pre>
+</div>
+
+<h4 id="输入例子-1">输入例子:</h4>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>4
+4 1 2 3
+</code></pre>
+</div>
+
+<h4 id="输出例子-1">输出例子:</h4>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>2
+</code></pre>
+</div>
+
+<h4 id="思路-1">思路</h4>
+
+<p>在输入过程中记录下积分小于等于小美积分的人数m，输出$\lfloor log_2(m+1) \rfloor$的值即可，输出代码如下，全部代码见https://github.com/b-liu14/algoritm-solutions/blob/master/nowcoder/championship.cpp。最后的1e-5是为了避免浮点数误差而加上去的。</p>
+
+<div class="language-c++ highlighter-rouge"><pre class="highlight"><code><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="kt">int</span><span class="p">(</span><span class="n">floor</span><span class="p">(</span><span class="n">log2</span><span class="p">(</span><span class="n">m</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="mf">1e-5</span><span class="p">))</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</code></pre>
+</div>
+
+  <span class="post-tags">
+      🏷 &nbsp;&nbsp;
+      
+  </span>
+
+    <div class="PageNavigation">
+      
+        <a class="prev" href="/%E5%8D%9A%E5%AE%A2%E6%8D%A2%E5%9F%9F%E5%90%8D%E5%95%A6/">&laquo; 博客换域名啦</a>
+      
+      
+        <a class="next" href="/%E7%BE%8E%E5%9B%A2%E8%B5%84%E6%A0%BC%E8%B5%9B%E9%A2%98%E8%A7%A3-3/">美团资格赛题解：3 &raquo;</a>
+      
+    </div>
+  
+</article>
+
+<!-- Comment -->
+
+<hr>
+<div id="container"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  // id: '页面 ID', // 可选。默认为 location.href
+  owner: 'b-liu14',
+  repo: 'b-liu14.github.io',
+  oauth: {
+    client_id: '330c080c67573c519f91',
+    client_secret: '3244461d56607775294995b638885104a7df5b35',
+  },
+})
+gitment.render('container')
+</script>
+
 
 
 <!-- my change -->

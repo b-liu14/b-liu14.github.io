@@ -1,0 +1,347 @@
+---
+layout: post
+title: "美团资格赛题解：6"
+date: 2017-06-17 17:30:10 +0800
+categories: diary
+location: Beijing China
+description: 暂无描述
+---
+---
+
+这次美团资格赛，被leetcode惯坏了的我起初很不习惯没有错误样例，总是百思不得其解自己错在哪了，而手动构造的样例也不够大，无法测各种边界情况。在线下测试时，能想到的样例都想到了，可是提交上去还是不能AC，于是开始一场又一场的狗血调试过程。
+
+
+
+### 第六题
+
+#### 题目描述
+
+围棋是起源于中国有悠久历史的策略性棋类游戏。它的规则如下：
+1. 棋盘19*19。
+2. 棋子分黑白两色，双方各执一色。
+3. 下法：每次黑或白着一子于棋盘的空点上。棋子下定后，不再向其他点移动。
+4. 棋子的气：一个棋子在棋盘上，与它相邻的空点是这个棋子的“气”（这里相邻是指两个点有公共边）。 相邻的点上如果有同色棋子存在，这些棋子就相互连接成一个不可分割的整体，气合并计算。
+   相邻的点上如果有异色棋子存在，此处的气便不存在。
+   如果棋子所在的连通块失去所有的气，即为无气之子，不能在棋盘上存在。
+5. 提子：把无气之子清理出棋盘的手段叫“提子”。提子有二种：
+   * 着子后，对方棋子无气，应立即提取对方无气之子。
+   * 着子后，双方棋子都呈无气状态，应立即提取对方无气之子。
+6. 禁着点：棋盘上的任何一空点，如果某方在此下子，会使该子立即呈无气状态，同时又不能提取对方的棋子，这个点叫做“禁着点”，该方不能在此下子。
+7. 禁止全局同形：无论哪一方，在成功进行了着子、提子操作后，棋盘局面不能和任何之前的局面相同。
+
+你要做的是：输入一些操作，从空棋盘开始模拟这些操作。
+对于每一步，若结果不正确，则输出对应的miss并且忽略这个操作，并在最后输出棋盘的局面。
+
+#### 输入描述:
+
+```
+第一行，测试数据组数≤100
+第二行，每组测试数据，执行的步数 n ≤ 2000
+然后 n 行
+B x y
+W x y
+(1 ≤ x ≤ 19,1 ≤ y ≤ 19)
+其中，二元组 x,y 表示围棋棋盘上第 x 行第 y 列对应的点。
+输入数据保证是黑白轮流下的。
+```
+
+#### 输出描述:
+
+```
+多行
+对于miss的情况，输出是哪一种错误格式，其中：
+miss 1 表示下的位置已经有棋了
+miss 2 表示违反规则6
+miss 3 表示违反规则7
+对于正常的操作，不用输出。
+最后输出最终盘面。“B表示黑子，W表示白子，如果是空点的话，就输出'.'字符。”
+```
+
+#### 输入例子:
+
+```
+1
+12
+B 1 3
+W 1 2
+B 2 4
+W 2 1
+B 1 1
+W 2 3
+B 3 3
+W 3 2
+B 1 1
+W 2 3
+B 2 2
+W 2 3
+```
+
+#### 输出例子:
+
+```
+miss 2
+miss 2
+miss 1
+miss 3
+.WB................
+WB.B...............
+.WB................
+...................
+...................
+...................
+...................
+...................
+...................
+...................
+...................
+...................
+...................
+...................
+...................
+...................
+...................
+...................
+...................
+```
+
+#### 思路：
+
+第六题是一个模拟题，首先我采用了增量式的做法，记录下每一个连通分量的气，在下子的时候只需要更新落点周围的连通分量的气即可，核心代码如下：
+
+```c++
+// go_incre.cpp
+const int Edge = 19;
+vector<vector<int> > B(Edge + 2, vector<int>(Edge + 2, 0));
+vector<vector<int> > P(Edge + 2, vector<int>(Edge + 2, 0));
+vector<vector<int> > E(Edge + 2, vector<int>(Edge + 2, 0));
+const int dx[] = {1, -1, 0, 0}, dy[] = {0, 0, 1, -1};
+set<vector<vector<int> > > tab;
+
+void initBoard() {...}
+
+int getParent(int x, int y) {
+    if(P[x][y] == x * 100 + y) return P[x][y];
+    return P[x][y] = getParent(P[x][y] / 100, P[x][y] % 100);
+}
+
+void takePawn(int x, int y, bool isBlack) {
+    queue<int> q;
+    q.push(x * 100 + y);
+    while(!q.empty()) {
+        int px = q.front() / 100, py = q.front() % 100; q.pop();
+        B[px][py] = P[px][py] = E[px][py] = 0;
+        for(int i = 0; i < 4; i++) {
+            int nx = px + dx[i], ny = py + dy[i];
+            if((isBlack && B[nx][ny] == 2) || (!isBlack && B[nx][ny] == 1)) {
+                int p = getParent(nx, ny);
+                E[p / 100][p % 100]++;
+            }
+            else if((isBlack && B[nx][ny] == 1) || (!isBlack && B[nx][ny] == 2)) {
+                q.push(nx * 100 + ny);
+            }
+        }
+    }
+}
+
+void putPawn(int x, int y, bool isBlack) {
+    if(B[x][y]) {
+        printf("miss 1\n");
+        return;
+    }
+    vector<vector<int> > temB = B, temP = P, temE = E;
+
+    B[x][y] = isBlack ? 1 : 2;
+    P[x][y] = x * 100 + y;
+    int check[5] = {0};
+    int errorNum = 0;
+    for(int i = 0; i < 4; i++) {
+        int nx = x + dx[i], ny = y + dy[i];
+        int &p = check[i];
+        if(B[nx][ny] == 0) E[x][y]++;
+        else if((isBlack && B[nx][ny] == 1) || (!isBlack && B[nx][ny] == 2)) {
+            p = getParent(nx, ny);
+            if(x * 100 + y == p) E[x][y]--;
+            else {
+                E[x][y] += E[p / 100][p % 100] - 1;
+                P[p / 100][p % 100] = x * 100 + y;
+            }
+        }
+        else if((isBlack && B[nx][ny] == 2) || (!isBlack && B[nx][ny] == 1)) {
+            p = getParent(nx, ny);
+            E[p / 100][p % 100]--;
+            errorNum++;
+        }
+    }
+    errorNum = 4;
+    check[4] = P[x][y];
+    for(int i = 0; i < 5; i++) {
+        int& p = check[i];
+        if(!E[p / 100][p % 100]) {
+            if(i == 4) {
+                if(errorNum == 4) {
+                    printf("miss 2\n");
+                    B = temB, P = temP, E = temE;
+                    return;
+                }
+                else takePawn(p / 100, p % 100, isBlack);
+            }
+            else takePawn(p / 100, p % 100, !isBlack);
+        }
+    }
+
+    if(tab.find(B) != tab.end()) {
+        printf("miss 3\n");
+        B = temB, P = temP, E = temE;
+    }
+    else tab.insert(B);
+}
+
+void printBoard() {...}
+int main() {...}
+```
+
+由于根据落子位置来更新落子周围的联通分量的气的逻辑有点复杂，写出来上诉版本后自己也很虚，提交上去果然错了，自己试了很久也没找到问题，于是决定写一个暴力版本来和该版本对拍，根据对拍结果来查找问题，暴力版本如下，模拟每一步落子，使用深搜查看是否有子可以被提掉，存下所有中间状态以查看是否出现局面重复（事实上，刚开始实现的暴力版本也有问题，后面通过对拍发现了暴力版本的问题，提交后AC，于是就没有再管增量版本）：
+
+```c++
+// go_force.cpp
+const int Edge = 19;
+vector<vector<int> > B(Edge + 1, vector<int>(Edge + 1, 0));
+set<vector<vector<int> > > tab;
+const int dx[] = {1, -1, 0, 0}, dy[] = {0, 0, 1, -1};
+
+void initBoard() {
+    for(int i = 1; i <= Edge; i++)
+        for(int j = 1; j <= Edge; j++)
+            B[i][j] = 0;
+    tab.clear();
+}
+
+void printBoard() {...}
+bool dfs(int x, int y, vector<vector<bool> >& vis, const int& color) {
+    for(int i = 0; i < 4; i++) {
+        int nx = x + dx[i], ny = y + dy[i];
+        if(nx >= 1 && nx <= Edge && ny >= 1 && ny <= Edge && !vis[nx][ny]) {
+            if(B[nx][ny] == color) {
+                vis[nx][ny] = true;
+                if(!dfs(nx, ny, vis, color)) return false;
+            }
+            else if(B[nx][ny] == 0) return false;
+        }
+    }
+    return true;
+}
+
+void takePawn(int x, int y, const int& color) {
+    queue<int> q;
+    q.push(x * 100 + y);
+    while(!q.empty()) {
+        x = q.front() / 100, y = q.front() % 100; q.pop();
+        B[x][y] = 0;
+        for(int i = 0; i < 4; i++) {
+            int nx = x + dx[i], ny = y + dy[i];
+            if(nx >= 1 && nx <= Edge && ny >= 1 && ny <= Edge && B[nx][ny] == color)
+                q.push(nx * 100 + ny);
+        }
+    }
+}
+
+void putPawn(int x, int y, bool isBlack) {
+  	// 已经有子
+    if(B[x][y]) {
+        printf("miss 1\n");
+        return;
+    }
+    vector<vector<int> > temB = B;
+    int color = isBlack ? 1 : 2;
+    bool isTaken = false, isEmpty = false;
+    B[x][y] = color;
+  	// 是否可以提掉周围的子
+    for(int i = 0; i < 4; i++) {
+        int nx = x + dx[i], ny = y + dy[i];
+        if(nx >= 1 && nx <= Edge && ny >= 1 && ny <= Edge) {
+            vector<vector<bool> > vis(Edge + 1, vector<bool>(Edge + 1, false));
+            if(B[nx][ny] == 3 - color) {
+                vis[nx][ny] = true;
+                bool temT = dfs(nx, ny, vis, 3 - color);
+                if(temT) takePawn(nx, ny, 3 - color);
+                isTaken = isTaken || temT;
+            }
+            else if(B[nx][ny] == 0) isEmpty = true;
+        }
+    }
+  	// 不可落子
+    if(!isTaken && !isEmpty) {
+        vector<vector<bool> > vis(Edge + 1, vector<bool>(Edge + 1, false));
+        isTaken = dfs(x, y, vis, color);
+        if(isTaken) {
+            printf("miss 2\n");
+            B = temB;
+            return;
+        }
+    }
+  	// 局面重复？
+    if(tab.find(B) != tab.end()) {
+        printf("miss 3\n");
+        B = temB;
+    }
+    else tab.insert(B);
+}
+
+int main() {...}
+```
+
+数据生成代码如下：
+
+```c++
+// data_generator.cpp
+const int Edge = 19;
+int get_rand() {
+  return rand() % Edge + 1;
+}
+int main() {
+    srand(unsigned(time(NULL)));
+    int T = 1, N = 1000;
+    cout << T << endl;
+    for(int i = 0; i < T; i++) {
+        cout << N << endl;
+        for(int j = 0; j < N; j++) {
+            char color = j & 1 ? 'W' : 'B';
+            cout << color << ' ' << get_rand() << ' ' << get_rand() << endl;
+        }
+    }
+    return 0;
+}
+```
+
+对拍脚本如下：
+
+```Bash
+#!/bin/bash
+
+g++ go_incre.cpp -std=c++11 -o go_incre
+g++ go_force.cpp -std=c++11 -o go_force
+g++ data_generator.cpp -std=c++11 -o data_generator
+while true; do
+    ./data_generator > data.txt
+    ./go_incre < data.txt > go_incre.out
+    ./go_force < data.txt > go_force.out
+    diff go_incre.out go_force.out
+    if [ $? -ne 0 ] ; then break; fi
+done
+```
+
+经过对拍，我们确实发现了两个版本的结果不一致，但是由于棋局太复杂，下棋步数太多，我们也没办法手动模拟去查看那个版本有错。
+
+于是我们试着减少测试样例中下棋的步数N，可是当N很小的时候，两个版本的结果总是一致的。
+
+最后，我们试着减小棋盘的大小为5，这样的话模拟器来会简单的多，经过比较长时间的对拍，终于有了一组测试样例不一致了，遗憾的是，在该样例里我们发现是暴力版本错了，错误原因是记录某一位置是否已经被访问托的变量vis在搜完一遍后没有清空，导致从其他位置开始搜索时有了错误的信息，导致产生了错误的结果。改正后提交，居然AC了。天色已晚，暂时就先不管增量版本，洗洗睡吧。
+
+
+### 总结
+
+这次比赛，还是能看出来自己问题很多，不过也积累了一些调试经验：
+* 问题规模比较大无法手动模拟时，尝试缩小问题规模，如第六题将棋盘大小设置为5。
+* 极端情况可以通过对拍来找出问题，但是需要小心的时一定要采用两种不同的思路来写对拍程序，否则无法保证对拍一致后的程序的正确性。
+* 当对该问题只有一个思路，无法找出暴力版本来进行对拍时，可以尝试将问题稍微变一下条件，如第三题的调试过程中我将优惠券的种类数目设置为1，使得修改后的问题存在一个很显然的解法，通过该解法与正常版本的程序进行对拍找到了bug。
+
+总之，自己还是太嫩了，推研考试当前，还是少用leetcode来刷题了。不管怎样，还是得多努力呀。

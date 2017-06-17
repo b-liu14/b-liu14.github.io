@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="songroger">
+
+  <title>美团资格赛题解：5</title>
+
+  <meta name="description" content="&lt;hr /&gt;&lt;p&gt;给定两个整数 l 和 r ，对于所有满足1 ≤ l ≤ x ≤ r ≤ 10^9 的 x ，把 x 的所有约数全部写下来。对于每个写下来的数，只保留最高位的那个数码。求1～9每个数码出现的次数。&lt;/p&gt;">
+
+  <!-- Open graph data -->
+  <meta property="og:site_name" content="kevin's blog">
+  <meta property="og:title" content="美团资格赛题解：5">
+  <meta property="og:url" content="http://localhost:4000/%E7%BE%8E%E5%9B%A2%E8%B5%84%E6%A0%BC%E8%B5%9B%E9%A2%98%E8%A7%A3-5/">
+  <meta property="og:type" content="article">
+  <meta property="og:description" content="&lt;hr /&gt;&lt;p&gt;给定两个整数 l 和 r ，对于所有满足1 ≤ l ≤ x ≤ r ≤ 10^9 的 x ，把 x 的所有约数全部写下来。对于每个写下来的数，只保留最高位的那个数码。求1～9每个数码出现的次数。&lt;/p&gt;">
+
+  <!-- Standard Stuff -->
+  <link rel="canonical" href="http://localhost:4000/%E7%BE%8E%E5%9B%A2%E8%B5%84%E6%A0%BC%E8%B5%9B%E9%A2%98%E8%A7%A3-5/"/>
+  <link rel="alternate" type="application/rss+xml" title="kevin's blog" href="http://localhost:4000/feed.xml"/>
+
+  <!-- Favicons -->
+  <link rel="shortcut icon" href="/static/image/favicon.jpeg">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-config" content="/assets/browserconfig.xml">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Styles -->
+
+  
+    <style type="text/css">
+      ::selection{background:#1565c0;color:#fff;text-shadow:none}html{font-size:109.375%;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-smoothing:antialiased;text-size-adjust:100%;box-sizing:border-box}@media screen and (min-width:700px){html{font-size:125%}}@media screen and (min-width:1440px){html{font-size:140.625%}}*,:after,:before{margin:0;padding:0;box-sizing:inherit}body{color:#444;font-family:Georgia,Source Sans Pro,sans-serif;font-size:.9rem;line-height:1.5rem}img{display:block;max-width:100%;height:auto;border:0}a:active,a:hover,a:visited{text-decoration:none}strong{font-weight:700}em{font-style:italic}a{background:transparent;color:#1565c0;text-decoration:none;cursor:pointer;word-wrap:break-word}a:active,a:focus,a:hover{outline:0;text-decoration:none}h1,h2,h3,h4,h5,h6,p{margin-bottom:.2rem}h1,h2,h3,h4,h5,h6{color:#000;font-weight:700;vertical-align:middle}h1:not(:first-child),h2:not(:first-child),h3:not(:first-child),h4:not(:first-child),h5:not(:first-child),h6:not(:first-child){margin-top:2.4rem}h1{font-size:2rem;line-height:3.2rem}h2{font-size:1.5rem;line-height:2.4rem}h3{font-size:1.17rem}h4{font-size:1rem}h5{font-size:.707rem}h6{font-size:.5rem}ol,ul{margin:0 0 1.6rem 1.6rem}ol ol,ol ul,ul ol,ul ul{margin:0 1.6rem}hr{display:block;height:1.6rem;border:0;box-shadow:inset 0 1px 0 #eee}blockquote{margin-bottom:1.6rem;padding:1.6rem;border-left:4px solid #e6e6e6;background:#f7f7f7}blockquote p{margin:0}.col{max-width:calc(700px + 1.6rem);margin:0 auto;padding:0 .8rem}@media screen and (min-width:1440px){.col{max-width:calc(800px + 1.6rem)}}.header{display:flex;flex-wrap:wrap;justify-content:space-around;margin-bottom:2rem;box-shadow:0 1px 0 0 #eee}@media screen and (min-width:734px){.header{font-size:.75rem}}.header__logo{margin-bottom:0;font-size:1rem;font-weight:400;line-height:1.6rem}.header__logo img{display:initial;width:30px;height:30px;vertical-align:middle;border-radius:15px;opacity:1}.header__logo img:hover{opacity:.5;transition:all .5s ease-in}.header__logo a{color:#999;text-transform:uppercase}@media screen and (min-width:734px){.header__logo{font-size:.75rem}}.header__nav{display:flex;flex-wrap:wrap}.header__nav a{color:#444}.header__nav a:hover{color:#999;transition:all .5s ease-in}.header__link{padding:.8rem;color:#444;text-decoration:none;border-bottom:2px solid transparent;padding-bottom:1px}.header__link:hover{transition:all .5s ease-in;border-color:hsla(34,5%,70%,.7)}.header__link--logo{padding:.8rem;display:block}.header__link--logo:focus,.header__link--logo:hover{color:#444;transition:all .5s ease-in}.footer{margin-top:.5rem;padding:1.6rem 0;box-shadow:inset 0 1px 0 #eee}.footer .col{font-size:13px;text-align:center}.subscribe{color:#999;transition:all .25s ease-in}.subscribe:hover{color:#444;text-decoration:none}.blocks{display:flex;align-items:center;margin-bottom:.1rem}.blocks--space{justify-content:space-between}.block__item--mr{margin-right:.8rem}.blocks__item a{text-decoration:none;color:#999;border:3px solid rgba(0,0,0,.1);border-radius:20px;padding:1px 15px;font-family:Georgia,Microsoft YaHei,sans-serif}.blocks__item a:hover{color:#444;border-color:#999;transition:all .5s ease-in}.blocks__item .btn{box-shadow:inset 0 0 0 0 #1565c0}.article{margin-bottom:3rem;animation:itemshow .9s linear}.article__title{margin-bottom:.8rem}.article__title--single,.article__title a{font-family:Georgia,Microsoft YaHei,sans-serif}.article__title a{color:#444;transition:all .25s ease-in}.article__title a:hover{color:#999;text-decoration:none}.article__date{display:block;margin-bottom:.8rem;font-size:.7501rem}.cover{margin-bottom:.5rem}.cover img{width:100%}.article__more{color:#999;text-decoration:none}.article__more:hover{transition:all .5s ease-in;color:#444;text-decoration:none}.post-tags{text-align:right;text-decoration:none;font:italic 700 15px/30px Georgia,serif}.post-tags a{color:#999}.post-tags a:hover{color:#444;text-decoration:none}# changed .PageNavigation{font-size:14px;display:block;width:100%;overflow:hidden}.PageNavigation a{display:block;width:50%;float:left;margin:1em 0}.PageNavigation .next{text-align:right}@-webkit-keyframes "itemshow"{0%{top:-60px;opacity:0}33%{top:-40px;opacity:.2}66%{top:-20px;opacity:.6}to{top:0;opacity:1}}@keyframes "itemshow"{0%{top:-60px;opacity:0}33%{top:-40px;opacity:.2}66%{top:-20px;opacity:.6}to{top:0;opacity:1}}.arch-item{margin-bottom:10px;animation:itemshow .9s linear}.arch-title{color:#444;font-size:20px;font-family:Georgia,Hiragino Sans GB,Microsoft YaHei,sans-serif;font-weight:700;padding-right:10px}.arch-title:hover{color:#999;transition:all .25s ease-in}time{font-size:15px;font-family:Optima,Helvetica Neue,sans-serif}.arch-desc,time{color:#999}code,pre{background:#f7f7f7;font-family:Source Code Pro,monospace;font-size:.7rem;overflow-x:auto;vertical-align:top;line-height:1rem}.highlight{margin-bottom:1.6rem;padding:.8rem;background:#f7f7f7;box-shadow:inset 0 0 0 1px #eee}.highlight .c{color:#998}.highlight .err{background-color:#e3d2d2;color:#a61717}.highlight .k,.highlight .o{font-weight:400}.highlight .cm{color:#998}.highlight .cp{color:#999;font-weight:400}.highlight .c1{color:#998}.highlight .cs{color:#999;font-weight:400}.highlight .gd{background-color:#fdd;color:#000}.highlight .gd .x{background-color:#faa;color:#000}.highlight .gr{color:#a00}.highlight .gh{color:#999}.highlight .gi{background-color:#dfd;color:#000}.highlight .gi .x{background-color:#afa;color:#000}.highlight .go{color:#888}.highlight .gp{color:#555}.highlight .gs{font-weight:400}.highlight .gu{color:#aaa}.highlight .gt{color:#a00}.highlight .kc,.highlight .kd,.highlight .kp,.highlight .kr,.highlight .kt{font-weight:400}.highlight .kt{color:#458}.highlight .m{color:#099}.highlight .s{color:#d14}.highlight .na{color:teal}.highlight .nb{color:#0086b3}.highlight .nc{color:#458;font-weight:400}.highlight .no{color:teal}.highlight .ni{color:purple}.highlight .ne,.highlight .nf{color:#900;font-weight:400}.highlight .nn{color:#555}.highlight .nt{color:navy}.highlight .nv{color:teal}.highlight .ow{font-weight:400}.highlight .w{color:#bbb}.highlight .mf,.highlight .mh,.highlight .mi,.highlight .mo{color:#099}.highlight .s2,.highlight .sb,.highlight .sc,.highlight .sd,.highlight .se,.highlight .sh,.highlight .si,.highlight .sx{color:#d14}.highlight .sr{color:#009926}.highlight .s1{color:#d14}.highlight .ss{color:#990073}.highlight .bp{color:#999}.highlight .vc,.highlight .vg,.highlight .vi{color:teal}.highlight .il{color:#099}#backToTop{width:50px;height:50px;position:fixed;background:url(/static/image/backToTop/backToTop.png);display:none}
+    </style>
+  
+
+    <!-- mathjax -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$']]}});
+      processEscapes: true
+    </script>
+    <script type="text/javascript" async
+      src="https://cdn.mathjax.org/mathjax/2.7-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+
+</head>
+
+<body>
+
+  <header class="header">
+
+    
+      <div class="header__logo">
+        <a href="/" class="header__link--logo">
+        <!-- <div class="spinner"></div> -->
+        <img src="/static/image/avatar.JPG"></a>
+      </div>
+    
+
+    <nav class="header__nav" role="navigation">
+      <a href="/archives/tag" class="header__link">Tags</a>
+      <a href="/archives/year" class="header__link">Years</a>
+      <a href="/archives/month" class="header__link">Months</a>
+      <a href="/archives/" class="header__link">All Posts</a>
+      <!-- <a href="http://twitter.com/" class="header__link" target="_blank">Twitter</a> -->
+      <a href="http://github.com/b-liu14" class="header__link" target="_blank">Github</a>
+      <!-- <a href="http://facebook.com/" class="header__link" target="_blank">Facebook</a> -->
+      <a href="/about/" class="header__link">About Me</a>
+    </nav>
+  </header>
+
+  <main class="col">
+
+
+<article class="article">
+  <h2 class="article__title article__title--single">美团资格赛题解：5</h2>
+  <time class="article__date" datetime="2017-06-17"> 13:16 Jun.17-2017</time>
+  
+  <hr />
+
+<p>给定两个整数 l 和 r ，对于所有满足1 ≤ l ≤ x ≤ r ≤ 10^9 的 x ，把 x 的所有约数全部写下来。对于每个写下来的数，只保留最高位的那个数码。求1～9每个数码出现的次数。</p>
+
+<h4 id="输入描述">输入描述:</h4>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>一行，两个整数 l 和 r (1 ≤ l ≤ r ≤ 10^9)。
+</code></pre>
+</div>
+
+<h4 id="输出描述">输出描述:</h4>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>输出9行。
+第 i 行，输出数码 i 出现的次数。
+</code></pre>
+</div>
+
+<h4 id="输入例子">输入例子:</h4>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>1 4
+</code></pre>
+</div>
+
+<h4 id="输出例子">输出例子:</h4>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>4
+2
+1
+1
+0
+0
+0
+0
+0
+</code></pre>
+</div>
+
+<h4 id="思路">思路：</h4>
+
+<p>首先，我们只需要分别计算1-l和1-r的数码出现次数，两个数组相减即可得到答案。因此下面仅仅计算1~n的数码即可。</p>
+
+<p>其次，我们知道，整数m在1~n所有数的因数中出现的次数为$\lfloor \frac{n}{m}\rfloor​$，因此一种很自然的思路是枚举m，可是由于r最大可能为$10^9​$，因此线性时间复杂度肯定是不允许的。</p>
+
+<p>换个思路，对于m比较大时，$|\lfloor \frac{n}{m}\rfloor - \lfloor \frac{n}{m+1}\rfloor| &lt;= 1$，也就是说变化应该是连续的，由此我们可以求出发生变化的位置，而不是枚举每一个数。代码如下：</p>
+
+<div class="language-c++ highlighter-rouge"><pre class="highlight"><code><span class="n">vector</span><span class="o">&lt;</span><span class="kt">long</span> <span class="kt">long</span><span class="o">&gt;</span> <span class="n">sum</span><span class="p">(</span><span class="kt">long</span> <span class="kt">long</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">long</span> <span class="kt">long</span><span class="o">&gt;</span> <span class="n">ans</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">9</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">long</span> <span class="kt">long</span> <span class="n">n</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">n</span> <span class="o">&gt;</span> <span class="n">r</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
+            <span class="kt">long</span> <span class="kt">long</span> <span class="n">maxN</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">/</span> <span class="n">i</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+          	<span class="c1">// n 较大时更加变化的位置求解
+</span>            <span class="k">if</span><span class="p">(</span><span class="n">n</span> <span class="o">&gt;=</span> <span class="mi">100000</span><span class="p">)</span> <span class="p">{</span>
+                <span class="kt">long</span> <span class="kt">long</span> <span class="n">left</span> <span class="o">=</span> <span class="n">r</span> <span class="o">/</span> <span class="n">n</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="n">r</span> <span class="o">/</span> <span class="n">maxN</span><span class="p">;</span>
+                <span class="k">for</span><span class="p">(</span><span class="kt">long</span> <span class="kt">long</span> <span class="n">k</span> <span class="o">=</span> <span class="n">left</span><span class="p">;</span> <span class="n">k</span> <span class="o">&gt;=</span> <span class="n">right</span><span class="p">;</span> <span class="n">k</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="n">ans</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">k</span> <span class="o">*</span> <span class="p">(</span><span class="n">min</span><span class="p">(</span><span class="n">maxN</span><span class="p">,</span> <span class="n">r</span> <span class="o">/</span> <span class="n">k</span><span class="p">)</span> <span class="o">-</span> <span class="n">max</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">r</span> <span class="o">/</span> <span class="p">(</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)));</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="c1">// n 较小时枚举
+</span>            <span class="k">else</span> <span class="p">{</span>
+                <span class="k">for</span><span class="p">(</span><span class="kt">long</span> <span class="kt">long</span> <span class="n">k</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="n">maxN</span><span class="p">;</span> <span class="n">k</span><span class="o">++</span><span class="p">)</span> <span class="n">ans</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">r</span> <span class="o">/</span> <span class="n">k</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="n">n</span> <span class="o">=</span> <span class="n">n</span> <span class="o">*</span> <span class="mi">10</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">ans</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">;</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">l</span> <span class="o">&gt;&gt;</span> <span class="n">r</span><span class="p">;</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">long</span> <span class="kt">long</span><span class="o">&gt;</span> <span class="n">L</span> <span class="o">=</span> <span class="n">sum</span><span class="p">(</span><span class="n">l</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="n">R</span> <span class="o">=</span> <span class="n">sum</span><span class="p">(</span><span class="n">r</span><span class="p">);</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">9</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">R</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">L</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+  <span class="post-tags">
+      🏷 &nbsp;&nbsp;
+      
+  </span>
+
+    <div class="PageNavigation">
+      
+        <a class="prev" href="/%E7%BE%8E%E5%9B%A2%E8%B5%84%E6%A0%BC%E8%B5%9B%E9%A2%98%E8%A7%A3-4/">&laquo; 美团资格赛题解：4</a>
+      
+      
+        <a class="next" href="/%E7%BE%8E%E5%9B%A2%E8%B5%84%E6%A0%BC%E8%B5%9B%E9%A2%98%E8%A7%A3-6/">美团资格赛题解：6 &raquo;</a>
+      
+    </div>
+  
+</article>
+
+<!-- Comment -->
+
+<hr>
+<div id="container"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  // id: '页面 ID', // 可选。默认为 location.href
+  owner: 'b-liu14',
+  repo: 'b-liu14.github.io',
+  oauth: {
+    client_id: '330c080c67573c519f91',
+    client_secret: '3244461d56607775294995b638885104a7df5b35',
+  },
+})
+gitment.render('container')
+</script>
+
+
+
+<!-- my change -->
+<script type="text/javascript" src="/static/js/backToTop.js"></script>
+<script>
+	backToTopInit({RightBottom: true});
+</script>
+
+<footer class="footer">
+	<div class="col">
+		© 2017-2019 kevin's blog | <a href="/feed.xml" class="subscribe">RSS</a>
+	</div>
+</footer>
+
+
+<div style="display:none">
+<script src="https://s4.cnzz.com/z_stat.php?id=1261710020&web_id=1261710020" language="JavaScript"></script>
+</div>
+
+</body>
+</html>

@@ -86,6 +86,71 @@
 
 <p>下面简要记录一下我对于这四道题的想法。</p>
 
+<!-- toc orderedList:0 depthFrom:1 depthTo:6 -->
+
+<ul>
+  <li><a href="#题目1queen-attackhttpshihocodercomproblemsetproblem1497">题目1：Queen Attack</a>
+    <ul>
+      <li><a href="#描述">描述</a></li>
+      <li><a href="#输入">输入</a></li>
+      <li><a href="#输出">输出</a>
+        <ul>
+          <li><a href="#样例输入">样例输入</a></li>
+          <li><a href="#样例输出">样例输出</a></li>
+        </ul>
+      </li>
+      <li><a href="#思路">思路</a>
+        <ul>
+          <li><a href="#思路1brute-forceon2-80">思路1：brute force[$O(n^2)$ 80%]</a></li>
+          <li><a href="#思路2排序onlgn-ac">思路2：排序[O(nlgn), AC]</a></li>
+          <li><a href="#思路3计数排序on-ac">思路3：计数排序[O(n), AC]</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#题目2-diligent-robotshttpshihocodercomproblemsetproblem1498">题目2 Diligent Robots</a>
+    <ul>
+      <li><a href="#描述-1">描述</a></li>
+      <li><a href="#输入-1">输入</a></li>
+      <li><a href="#输出-1">输出</a></li>
+      <li><a href="#思路-1">思路</a>
+        <ul>
+          <li><a href="#思路1枚举复制了多少个机器人on-80">思路1：枚举复制了多少个机器人[O(n) 80%]</a></li>
+          <li><a href="#思路2只允许全部复制olgn-ac">思路2：只允许全部复制[$O(lgn)$ AC]</a></li>
+          <li><a href="#思路三直接求解o1-ac">思路三：直接求解[O(1) AC]</a></li>
+        </ul>
+      </li>
+      <li><a href="#题目3a-box-of-coinshttpshihocodercomproblemsetproblem1499">题目3：A Box of Coins</a></li>
+      <li><a href="#描述-2">描述</a></li>
+      <li><a href="#输入-2">输入</a></li>
+      <li><a href="#输出-2">输出</a>
+        <ul>
+          <li><a href="#样例输入-1">样例输入</a></li>
+          <li><a href="#样例输出-1">样例输出</a></li>
+        </ul>
+      </li>
+      <li><a href="#思路-2">思路</a>
+        <ul>
+          <li><a href="#思路1简化问题错误">思路1：简化问题[错误]</a></li>
+          <li><a href="#思路2贪心on-ac">思路2：贪心[O(n), AC]</a></li>
+        </ul>
+      </li>
+      <li><a href="#题目4-el-suenohttpshihocodercomproblemsetproblem1500">题目4： EL SUENO</a></li>
+      <li><a href="#描述-3">描述</a></li>
+      <li><a href="#输入-3">输入</a></li>
+      <li><a href="#输出-3">输出</a>
+        <ul>
+          <li><a href="#样例输入-2">样例输入</a></li>
+          <li><a href="#样例输出-2">样例输出</a></li>
+        </ul>
+      </li>
+      <li><a href="#思路-3">思路</a></li>
+    </ul>
+  </li>
+</ul>
+
+<!-- tocstop -->
+
 <h2 id="题目1queen-attack">题目1：<a href="https://hihocoder.com/problemset/problem/1497">Queen Attack</a></h2>
 
 <p>时间限制:10000ms</p>
